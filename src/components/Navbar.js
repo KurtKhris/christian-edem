@@ -108,7 +108,7 @@ function Navbar(props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block"} }}
           >
             {/* Company Name */}
           </Typography>
@@ -131,7 +131,7 @@ function Navbar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "none", zIndex: 1400 },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,

@@ -3,7 +3,7 @@
 }
 
 .banner{
-  height: 56vh;
+  height: auto;
 }
 .banner h1{
   color: #fff;
@@ -24,15 +24,76 @@
   background:linear-gradient(to right,  #FF5F6D, #FFC371);
 }
 
-.profile{
-  height: 70vh;
-  width: 30%;
-  background: linear-gradient(to top, #FF5F6D, #FFC371);
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1200;
-  border-top-left-radius: 80%;
-  border-bottom-left-radius: 10%;
+.socials a{
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+
+
+/* Media queries */
+
+@media (max-width: 768px) {
+  .banner{
+    height: auto;
+  }
+  .banner h1{
+    font-size: 3rem;
+  }
+  .banner h6{
+    font-size: 1rem;
+  }
+  .banner h3{
+    font-size: 2rem;
+  }
+
+}
+
+/* media query for tablet */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .banner{
+    height: auto;
+  }
+  .banner h1{
+    font-size: 3rem;
+  }
+  .banner h6{
+    font-size: 1rem;
+  }
+  .banner h3{
+    font-size: 2rem;
+  }
+
+}
+
+@media screen and (min-width: 820px) and (max-width: 1180px){
+  .banner{
+    height: auto;
+  }
+  .banner h1{
+    font-size: 3rem;
+  }
+  .banner h6{
+    font-size: 1rem;
+  }
+  .banner h3{
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1280px) {
+  .banner{
+    height: auto;
+  }
+  .banner h1{
+    font-size: 3rem;
+  }
+  .banner h6{
+    font-size: 1rem;
+  }
+  .banner h3{
+    font-size: 2rem;
+  }
 }
 
