@@ -14,7 +14,7 @@ export const Home = () => {
       <div className="banner">
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 intro-text">
               <h6>Welcome to my world</h6>
               <h1 className="mb-0" >Hi, I'm Christian</h1>
               <h3 ><span style={{color: "#F97294"}} >Frontend</span> Software <span style={{color: "#F49D71"}} >Engineer</span></h3>
@@ -28,7 +28,7 @@ export const Home = () => {
               </div>
               <Button variant="contained" className="cv-btn mt-5" >Download My CV</Button>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 my-image">
               <div className="pic">
                 <img src={pic} className="img-fluid" alt="" />
               </div>
