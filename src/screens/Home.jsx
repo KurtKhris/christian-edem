@@ -16,7 +16,6 @@ export const Home = () => {
             <Button variant="contained" className="cv-btn" >Download My CV</Button>
 
             <div className="profile">
-              <h3>Test</h3>
             </div>
         </div>
       </div>
