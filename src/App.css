@@ -16,14 +16,6 @@
   }
 }
 
-@keyframes slideInFromTop {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 
 @keyframes slideInFromBottom {
   0% {
@@ -35,8 +27,47 @@
 }
 
 
+/* make image swing from left to right continously */
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  70% {
+    transform: rotate(-10deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .container-fluid{
   background-color: #03003D;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .banner .intro-text{
@@ -45,6 +76,10 @@
 
 .banner .my-image{
   animation: 1s ease-out 0s 1 slideInFromBottom;
+}
+
+.banner .my-image img{
+  animation: 100s ease-out 0s infinite swing;
 }
 
 .banner{
@@ -75,6 +110,42 @@
   color: #fff;
 }
 
+.about{
+  background-color: #040545;
+  height: auto;
+  padding: 2rem 0;
+}
+
+.about h1{
+  font-size: 4rem;
+}
+
+.about .read{
+  background:linear-gradient(to right,  #FF5F6D, #FFC371);
+  border: 2px solid #fff;
+}
+
+.me img{
+  width: -webkit-fill-available;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 5%;
+  border-top-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  margin-left: 20px;
+  border: 5px solid #fff;
+}
+
+.about .back{
+  height: 300px;
+  width: 300px;
+  background: linear-gradient(to right,  #FF5F6D, #FFC371);
+  border-radius: 10%;
+  margin-top: -280px;
+}
+
+.about .sch-job p{
+  color: #fff !important;
+}
 
 
 
