@@ -94,7 +94,8 @@ export const Home = () => {
                 <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" ><InstagramIcon className="social-icon" /></a>
                 
               </div>
-              <Button variant="contained" className="cv-btn mt-5" >Download My CV</Button>
+              <a href="https://docs.google.com/document/d/1r3WOGWwsnCC6y5ntL2te5uzs002FWzRp4gXz6etb9dI/edit" target="_blank" rel="noreferrer" ><Button variant="contained" className="cv-btn mt-5" >Download My CV</Button></a>
+              
             </div>
             <div className="col-md-6 my-image">
               <div className="pic text-center">
@@ -375,18 +376,18 @@ export const Home = () => {
                 </div>
               </div>
               <div className="col-sm-8">
-                <form action="">
+                <form  action="https://getform.io/f/62f6fbd1-dfc7-421c-b0e5-b050854b9a24" method="POST">
                   <div className="row">
                     <div className="col-sm mt-2">
-                      <input type="text" name="" id="" className="form-control" placeholder="Your Name" />
+                      <input type="text" name="name" id="" className="form-control" placeholder="Your Name" required />
                     </div>
                     <div className="col-sm mt-2">
-                      <input type="number" name="" id="" className="form-control" placeholder="Your Phone Number" />
+                      <input type="number" name="phone" id="" className="form-control" placeholder="Your Phone Number" required />
                     </div>
                   </div>
-                  <input type="email" name="" id="" className="form-control mt-2" placeholder="Your Email" />
-                  <textarea name="" id="" cols="30" rows="10" className="form-control mt-2" placeholder="Your Message"></textarea>
-                  <button className="btn btn-light mt-2 w-100" >Send Message</button>
+                  <input type="email" name="email" id="" className="form-control mt-2" placeholder="Your Email" required />
+                  <textarea name="message" id="" cols="30" rows="10" className="form-control mt-2" placeholder="Your Message" required></textarea>
+                  <button className="btn btn-light mt-2 w-100" type="submit" >Send Message</button>
                 </form>
                 <div className="socials text-center mt-2">
                 <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" ><LinkedInIcon className="social-icon" /></a>

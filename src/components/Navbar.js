@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 // import { Link } from "react-router-dom";
 import { Link } from "react-scroll";
+import logo from "../assets/img/Logo.png";
 
 const drawerWidth = 300;
 const navItems = [
@@ -53,15 +54,12 @@ function Navbar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center"}}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "left"}}>
         <div className="mobile-head">
-          {/* <img src={logo} alt="logo" className="logohead" /> */}
-          <Typography variant="h6" sx={{ my: 2 }}>
-              <span className="ms-3" >Christian</span>
-          </Typography>
+          <img src={logo} alt="logo" className="img-fluid py-3 ms-3" />
         </div>
       
-      <Divider />
+      <Divider/>
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
@@ -102,8 +100,8 @@ function Navbar(props) {
             <MenuIcon />
           </IconButton>
           {/* <span><img src={logo} alt="logo" className="logohead" /></span> */}
-          <span>
-            {isMobile ? <p style={{ fontSize: 20, marginLeft: 15, marginBottom: 0, marginTop: 0 }} >Christian</p> : <p style={{ fontSize: 20, marginLeft: 15, marginBottom: 0, marginTop: 0 }} >Christian</p>}
+          <span className="my-logo">
+            {isMobile ? <img src={logo} alt="logo" className="img-fluid py-3 ms-3" /> : <img src={logo} alt="logo" className="img-fluid py-3 ms-3" />}
           </span>
           <Typography
             variant="h6"

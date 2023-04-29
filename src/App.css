@@ -70,6 +70,14 @@
   padding-right: 0 !important;
 }
 
+.mobile-head img{
+  width: 250px
+}
+
+.my-logo img{
+  width: 250px;
+}
+
 .banner .intro-text{
   animation: 1s ease-out 0s 1 slideInFromLeft;
 }
