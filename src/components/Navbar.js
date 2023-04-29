@@ -21,13 +21,13 @@ const drawerWidth = 300;
 const navItems = [
   <span>
     {" "}
-    <a href="/" className="nav-link">
+    <Link to="about" smooth={true} duration={500}>
       About Me
-    </a>{" "}
+    </Link>{" "}
   </span>,
   <span>
     <Link to="skills" smooth={true} duration={500}>
-      Skills & Certifications
+      Skills
     </Link>
   </span>,
   <span>

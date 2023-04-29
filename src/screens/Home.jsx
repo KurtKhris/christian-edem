@@ -14,6 +14,15 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
+import html from "../assets/img/html.svg";
+import css from "../assets/img/css.svg";
+import js from "../assets/img/js.svg";
+import react from "../assets/img/react.svg";
+import reactNative from "../assets/img/reactnative.svg";
+import bootstrap from "../assets/img/bootstrap.svg";
+import git from "../assets/img/git.svg";
+import angular from "../assets/img/angular.svg";
+
 
 function ReadMore({ text }) {
   const [showFullText, setShowFullText] = useState(false);
@@ -84,7 +93,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="about">
+      <div className="about" id="about">
         <div className="container">
           <div className="row">
             <div className="col-sm-6 me">
@@ -150,6 +159,119 @@ export const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="skills-certs" id="skills" >
+        <div className="container">
+          <div className="skills">
+            <h3 className="text-white" >Skills</h3>
+            <div className="row">
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={html} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#E65100"}} >HTML</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={css} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#0277BD"}} >CSS</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={js} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#F3DB4C"}} >JAVASCRIPT</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={react} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#80DEEA"}} >REACT</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={reactNative} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#80DEEA"}} >REACT NATIVE</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={bootstrap} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#673AB7"}} >BOOTSTRAP</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={git} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#000000"}} >GITHUB</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-3 mt-3">
+                <div className="card">
+                  <div className="card-body">
+                    <div className="logo">
+                      <img src={angular} alt="" className="img-fluid" />
+                    </div>
+                    <div className="name">
+                      <h5 style={{color: "#B71C1C"}} >ANGULAR</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="portfolio" id="portfolio">
+        <div className="container">
+        <h2 className="text-center" ><span className="text-white" >My</span> <span style={{color:"#FF5F6D"}} >Portfolio</span></h2>
+        <p className="text-center text-white" >
+          Here are some of my projects I have worked on. Click on the project to view more details.
+        </p>
         </div>
       </div>
     </div>

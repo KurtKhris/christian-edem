@@ -113,7 +113,7 @@
 .about{
   background-color: #040545;
   height: auto;
-  padding: 2rem 0;
+  padding: 5rem 0;
 }
 
 .about h1{
@@ -145,6 +145,29 @@
 
 .about .sch-job p{
   color: #fff !important;
+}
+
+.skills-certs{
+  background-color: #03013C;
+  height: auto;
+  padding: 5rem 0;
+}
+
+.skills .card:hover{
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.skills .card-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portfolio{
+  background-color: #040545;
+  height: auto;
+  padding: 5rem 0;
 }
 
 
