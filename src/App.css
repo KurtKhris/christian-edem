@@ -159,9 +159,7 @@
 }
 
 .skills .card-body{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
 }
 
 .portfolio{
@@ -170,6 +168,77 @@
   padding: 5rem 0;
 }
 
+.portfolio .my-img img{
+  border-radius: 10px;
+}
+
+.portfolio .my-img img:hover{
+  transform: scale(1.05);
+  transition: all 0.5s ease-in-out;
+}
+
+.portfolio .card{
+  border-radius: 20px;
+}
+
+.portfolio .card{
+  color: #fff;
+}
+
+.portfolio .card h5{
+  padding-bottom: 1rem;
+}
+
+.portfolio .pro-btn{
+  background:linear-gradient(to right,  #FF5F6D, #FFC371);
+  border: 2px solid #fff;
+  color: #03013C;
+}
+
+.portfolio .pro-btn:hover{
+  background:linear-gradient(to right,  #FF5F6D, #FFC371);
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.contact{
+  background-color: #03013C;
+  height: auto;
+  padding: 5rem 0;
+}
+
+.contact .contact-form{
+  background: linear-gradient(to right,  #FF5F6D, #FFC371);
+  height: auto;
+  padding: 2rem;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 60px;
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 10px;
+}
+
+.contact .contact-form a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.contact .contact-form .shaking-hands img{
+  border: 2px solid #fff;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.contact .contact-form form TextField{
+  background-color: #fff;
+}
+
+.footer{
+  background-color: #03003D;
+  height: auto;
+  padding: 2rem 0;
+}
 
 
 

@@ -22,7 +22,17 @@ import reactNative from "../assets/img/reactnative.svg";
 import bootstrap from "../assets/img/bootstrap.svg";
 import git from "../assets/img/git.svg";
 import angular from "../assets/img/angular.svg";
-
+import rentsim from "../assets/img/rentsim.png";
+import witty from "../assets/img/witty.png";
+import capital from "../assets/img/capital.png";
+import airside from "../assets/img/airside.png";
+import silver from "../assets/img/silver.png";
+import ewura from "../assets/img/ewura.png";
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import shaking from "../assets/img/shaking.jpg";
+import { Footer } from "../components/footer";
 
 function ReadMore({ text }) {
   const [showFullText, setShowFullText] = useState(false);
@@ -55,6 +65,7 @@ function ReadMore({ text }) {
 
 export const Home = () => {
 
+
   const text = `My name is Christian Edem Kpegah, a front-end developer passionate about creating stunning and responsive websites that provide an exceptional user experience. With my extensive knowledge of HTML, CSS, and JavaScript, React, React Native, I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
 
   I have a strong attention to detail and a commitment to delivering high-quality work. I am constantly staying up-to-date with the latest web design trends and technologies, and I am always looking for ways to improve my skills and knowledge.
@@ -86,7 +97,7 @@ export const Home = () => {
               <Button variant="contained" className="cv-btn mt-5" >Download My CV</Button>
             </div>
             <div className="col-md-6 my-image">
-              <div className="pic">
+              <div className="pic text-center">
                 <img src={pic} className="img-fluid" alt="" />
               </div>
             </div>
@@ -101,7 +112,7 @@ export const Home = () => {
               <div className="back"></div>
             </div>
             <div className="col-sm-6">
-              <h1> <span style={{color: "#F97294"}}>About</span>  <span style={{color: "#F49D71"}} >Me</span></h1>
+              <h1> <span style={{color: "#fff"}}>About</span>  <span style={{color: "#F49D71"}} >Me</span></h1>
                 <ReadMore text={text} />
             </div>
           </div>
@@ -173,7 +184,7 @@ export const Home = () => {
                       <img src={html} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#E65100"}} >HTML</h5>
+                      <h6 style={{color: "#E65100"}} >HTML</h6>
                     </div>
                   </div>
                 </div>
@@ -185,7 +196,7 @@ export const Home = () => {
                       <img src={css} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#0277BD"}} >CSS</h5>
+                      <h6 style={{color: "#0277BD"}} >CSS</h6>
                     </div>
                   </div>
                 </div>
@@ -197,7 +208,7 @@ export const Home = () => {
                       <img src={js} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#F3DB4C"}} >JAVASCRIPT</h5>
+                      <h6 style={{color: "#F3DB4C"}} >JAVASCRIPT</h6>
                     </div>
                   </div>
                 </div>
@@ -209,7 +220,7 @@ export const Home = () => {
                       <img src={react} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#80DEEA"}} >REACT</h5>
+                      <h6 style={{color: "#80DEEA"}} >REACT</h6>
                     </div>
                   </div>
                 </div>
@@ -221,7 +232,7 @@ export const Home = () => {
                       <img src={reactNative} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#80DEEA"}} >REACT NATIVE</h5>
+                      <h6 style={{color: "#80DEEA"}} >REACT NATIVE</h6>
                     </div>
                   </div>
                 </div>
@@ -233,7 +244,7 @@ export const Home = () => {
                       <img src={bootstrap} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#673AB7"}} >BOOTSTRAP</h5>
+                      <h6 style={{color: "#673AB7"}} >BOOTSTRAP</h6>
                     </div>
                   </div>
                 </div>
@@ -245,7 +256,7 @@ export const Home = () => {
                       <img src={git} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#000000"}} >GITHUB</h5>
+                      <h6 style={{color: "#000000"}} >GITHUB</h6>
                     </div>
                   </div>
                 </div>
@@ -257,7 +268,7 @@ export const Home = () => {
                       <img src={angular} alt="" className="img-fluid" />
                     </div>
                     <div className="name">
-                      <h5 style={{color: "#B71C1C"}} >ANGULAR</h5>
+                      <h6 style={{color: "#B71C1C"}} >ANGULAR</h6>
                     </div>
                   </div>
                 </div>
@@ -269,11 +280,127 @@ export const Home = () => {
       <div className="portfolio" id="portfolio">
         <div className="container">
         <h2 className="text-center" ><span className="text-white" >My</span> <span style={{color:"#FF5F6D"}} >Portfolio</span></h2>
-        <p className="text-center text-white" >
-          Here are some of my projects I have worked on. Click on the project to view more details.
-        </p>
+        <p className="text-center text-white" >Here are some of my projects I have worked on. Click on the project to view more details.</p>
+          <div className="row">
+            <div className="col-sm-4 mt-3">
+              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
+                <div className="my-img p-3">
+                  <img src={witty} alt="" className="card-img-top" />
+                </div>
+                <div className="card-body">
+                  <h5>Witty Innovations Consult</h5>
+                  <a href="https://wittyinnovationsconsult.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 mt-3">
+              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
+                <div className="my-img p-3">
+                  <img src={capital} alt="" className="card-img-top" />
+                </div>
+                <div className="card-body">
+                  <h5>The Capital Group Limited</h5>
+                  <a href="https://capitalgroupghana.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 mt-3">
+              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
+                <div className="my-img p-3">
+                  <img src={rentsim} alt="" className="card-img-top" />
+                </div>
+                <div className="card-body">
+                  <h5>Rent SIM Connect GH</h5>
+                  <a href="https://rentsimconnect.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 mt-3">
+              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
+                <div className="my-img p-3">
+                  <img src={airside} alt="" className="card-img-top" />
+                </div>
+                <div className="card-body">
+                  <h5>Airside Hotel</h5>
+                  <a href="https://airsidehotel.com.gh/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 mt-3">
+              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
+                <div className="my-img p-3">
+                  <img src={ewura} alt="" className="card-img-top" />
+                </div>
+                <div className="card-body">
+                  <h5>Ewurabena Aubynn</h5>
+                  <a href="https://www.ewurabena2024.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-4 mt-3">
+              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
+                <div className="my-img p-3">
+                  <img src={silver} alt="" className="card-img-top" />
+                </div>
+                <div className="card-body">
+                  <h5>Silver Orchid Spa</h5>
+                  <a href="https://www.silverorchidspa.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <div className="contact" id="contact" >
+        <div className="container">
+          <h2 className="text-center" ><span className="text-white" >Contact</span> <span style={{color:"#FF5F6D"}} >Me</span></h2>
+          <p className="text-center text-white " >Feel free to contact me directly via Phone, WhatsApp, or Email, or fill up the form below to get in touch with me.</p>
+          <div className="contact-form">
+            <div className="row">
+              <div className="col-sm-4">
+                <div className="mb-3">
+                  <h6 className="text-white" >Phone:</h6>
+                  <h6 className="text-white" ><PhoneIcon/> <span><a href="tel:+233247154259"> +233 24 715 4259</a></span> </h6>
+                </div>
+                <div className="mb-3">
+                  <h6 className="text-white" >WhatsApp:</h6>
+                  <h6 className="text-white" ><WhatsAppIcon /><span><a href="https://wa.me/0247154259" target="_blank" rel="noreferrer"> +233 24 715 4259</a></span> </h6>
+                </div>
+                <div className="mb-3">
+                  <h6 className="text-white" >Email:</h6>
+                  <h6 className="text-white" ><EmailIcon/> <span><a href="mailto:christiankpegah@gmail.com"> christiankpegah@gmail.com</a></span> </h6>
+                </div>
+                <div className="shaking-hands" >
+                  <img src={shaking} className="img-fluid" alt="" />
+                </div>
+              </div>
+              <div className="col-sm-8">
+                <form action="">
+                  <div className="row">
+                    <div className="col-sm mt-2">
+                      <input type="text" name="" id="" className="form-control" placeholder="Your Name" />
+                    </div>
+                    <div className="col-sm mt-2">
+                      <input type="number" name="" id="" className="form-control" placeholder="Your Phone Number" />
+                    </div>
+                  </div>
+                  <input type="email" name="" id="" className="form-control mt-2" placeholder="Your Email" />
+                  <textarea name="" id="" cols="30" rows="10" className="form-control mt-2" placeholder="Your Message"></textarea>
+                  <button className="btn btn-light mt-2 w-100" >Send Message</button>
+                </form>
+                <div className="socials text-center mt-2">
+                <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" ><LinkedInIcon className="social-icon" /></a>
+                <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" ><GitHubIcon className="social-icon" /></a>
+                <a href="https://twitter.com/kurt_khris" target="_blank" rel="noreferrer" ><TwitterIcon className="social-icon" /></a>
+                <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" ><InstagramIcon className="social-icon" /></a>
+                
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer/>
     </div>
   );
 }
