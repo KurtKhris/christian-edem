@@ -99,9 +99,8 @@ function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          {/* <span><img src={logo} alt="logo" className="logohead" /></span> */}
           <span className="my-logo">
-            {isMobile ? <img src={logo} alt="logo" className="img-fluid py-3 ms-3" /> : <img src={logo} alt="logo" className="img-fluid py-3 ms-3" />}
+            {isMobile ? <img src={logo} alt="logo" className="img-fluid py-2 ms-3" /> : <img src={logo} alt="logo" className="img-fluid py-2 ms-3" />}
           </span>
           <Typography
             variant="h6"
