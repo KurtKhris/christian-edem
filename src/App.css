@@ -64,6 +64,10 @@
   }
 }
 
+*{
+  font-family: 'Source Code Pro', monospace;
+}
+
 .container-fluid{
   background-color: #03003D;
   padding-left: 0 !important;
