@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import Navbar from "../components/Navbar";
 import Button from "@mui/material/Button";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -22,17 +22,20 @@ import reactNative from "../assets/img/reactnative.svg";
 import bootstrap from "../assets/img/bootstrap.svg";
 import git from "../assets/img/git.svg";
 import angular from "../assets/img/angular.svg";
-import rentsim from "../assets/img/rentsim.png";
-import witty from "../assets/img/witty.png";
-import capital from "../assets/img/capital.png";
-import airside from "../assets/img/airside.png";
-import silver from "../assets/img/silver.png";
-import ewura from "../assets/img/ewura.png";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import shaking from "../assets/img/shaking.jpg";
 import { Footer } from "../components/footer";
+import projectsData from "./projectsData.json";
+import emailjs from '@emailjs/browser';
+import ToastService from 'react-material-toast';
+
+const toast = ToastService.new({
+    place: "topRight",
+    duration: 1,
+    maxCount: 1,
+  });
 
 function ReadMore({ text }) {
   const [showFullText, setShowFullText] = useState(false);
@@ -76,6 +79,18 @@ export const Home = () => {
   
   Overall, I am a dedicated and passionate frontend developer who is committed to delivering high-quality work that exceeds expectations.`;
 
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_bxcljt5', 'template_xakzu08', form.current, 'RY1_htjR_99HHd0hX')
+      .then((result) => {
+          console.log(result.text);
+          toast.success("Email Sent Successfully");
+      }, (error) => {
+          console.log(error.text);
+          toast.error("Email Not Sent");
+      });
+  };
   return (
     <div>
       <Navbar/>
@@ -280,76 +295,24 @@ export const Home = () => {
       </div>
       <div className="portfolio" id="portfolio">
         <div className="container">
-        <h2 className="text-center" ><span className="text-white" >My</span> <span style={{color:"#FF5F6D"}} >Portfolio</span></h2>
-        <p className="text-center text-white" >Here are some of my projects I have worked on. Click on the project to view more details.</p>
-          <div className="row">
-            <div className="col-sm-4 mt-3">
-              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
-                <div className="my-img p-3">
-                  <img src={witty} alt="" className="card-img-top" />
+          <h2 className="text-center" ><span className="text-white" >My</span> <span style={{color:"#FF5F6D"}} >Portfolio</span></h2>
+          <p className="text-center text-white" >Here are some of my projects I have worked on. Click on the project to view more details.</p>
+            <div className="row">
+              {projectsData.projects.map((project) => (
+                <div className="col-sm-4 mt-3" key={project.id}>
+                  <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
+                    <div className="my-img p-3">
+                      <img src={project.image} alt="" className="card-img-top" />
+                    </div>
+                    <div className="card-body">
+                      <h5>{project.name}</h5>
+                      <a href={project.url} target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                    </div>
+                  </div>
                 </div>
-                <div className="card-body">
-                  <h5>Witty Innovations Consult</h5>
-                  <a href="https://wittyinnovationsconsult.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
-                </div>
-              </div>
+              ))}
+              
             </div>
-            <div className="col-sm-4 mt-3">
-              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
-                <div className="my-img p-3">
-                  <img src={capital} alt="" className="card-img-top" />
-                </div>
-                <div className="card-body">
-                  <h5>The Capital Group Limited</h5>
-                  <a href="https://capitalgroupghana.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4 mt-3">
-              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
-                <div className="my-img p-3">
-                  <img src={rentsim} alt="" className="card-img-top" />
-                </div>
-                <div className="card-body">
-                  <h5>Rent SIM Connect GH</h5>
-                  <a href="https://rentsimconnect.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4 mt-3">
-              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
-                <div className="my-img p-3">
-                  <img src={airside} alt="" className="card-img-top" />
-                </div>
-                <div className="card-body">
-                  <h5>Airside Hotel</h5>
-                  <a href="https://airsidehotel.com.gh/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4 mt-3">
-              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
-                <div className="my-img p-3">
-                  <img src={ewura} alt="" className="card-img-top" />
-                </div>
-                <div className="card-body">
-                  <h5>Ewurabena Aubynn</h5>
-                  <a href="https://www.ewurabena2024.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-4 mt-3">
-              <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
-                <div className="my-img p-3">
-                  <img src={silver} alt="" className="card-img-top" />
-                </div>
-                <div className="card-body">
-                  <h5>Silver Orchid Spa</h5>
-                  <a href="https://www.silverorchidspa.com/" target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div className="contact" id="contact" >
@@ -376,16 +339,16 @@ export const Home = () => {
                 </div>
               </div>
               <div className="col-sm-8">
-                <form  action="https://getform.io/f/62f6fbd1-dfc7-421c-b0e5-b050854b9a24" method="POST">
+                <form ref={form}  onSubmit={sendEmail} >
                   <div className="row">
                     <div className="col-sm mt-2">
-                      <input type="text" name="name" id="" className="form-control" placeholder="Your Name" required />
+                      <input type="text" name="user_name" id="" className="form-control" placeholder="Your Name" required />
                     </div>
                     <div className="col-sm mt-2">
-                      <input type="number" name="phone" id="" className="form-control" placeholder="Your Phone Number" required />
+                      <input type="number" name="user_phone" id="" className="form-control" placeholder="Your Phone Number" required />
                     </div>
                   </div>
-                  <input type="email" name="email" id="" className="form-control mt-2" placeholder="Your Email" required />
+                  <input type="email" name="user_email" id="" className="form-control mt-2" placeholder="Your Email" required />
                   <textarea name="message" id="" cols="30" rows="10" className="form-control mt-2" placeholder="Your Message" required></textarea>
                   <button className="btn btn-light mt-2 w-100" type="submit" >Send Message</button>
                 </form>

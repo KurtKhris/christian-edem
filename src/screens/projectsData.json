@@ -1,0 +1,59 @@
+{
+    "projects": [
+      {
+        "id": 1,
+        "image": "https://i.imgur.com/r6XYPYx.png",
+        "name": "Witty Innovations Consult",
+        "url": "https://wittyinnovationsconsult.com/"
+      },
+      {
+        "id": 2,
+        "image": "https://i.imgur.com/srcs0zE.png",
+        "name": "The Capital Group Limited",
+        "url": "https://capitalgroupghana.com/"
+      },
+      {
+        "id": 3,
+        "image": "https://i.imgur.com/Epkzd3D.png",
+        "name": "Rent SIM & Connect GH",
+        "url": "https://rentsimconnect.com/"
+      },
+      {
+        "id": 4,
+        "image": "https://i.imgur.com/dbObfAX.png",
+        "name": "Airside Hotel",
+        "url": "https://airsidehotel.com.gh/"
+      },
+      {
+        "id": 5,
+        "image": "https://i.imgur.com/wkG8rFq.png",
+        "name": "Ewurabena Aubynn",
+        "url": "https://www.ewurabena2024.com/"
+      },
+      {
+        "id": 6,
+        "image": "https://i.imgur.com/xyJkOQH.png",
+        "name": "Global Education Pathfinders",
+        "url": "https://gepathfinders.com/"
+      },
+      {
+        "id": 7,
+        "image": "https://i.imgur.com/wZxdeaj.png",
+        "name": "Soul Camp",
+        "url": "https://soulcamp.org/"
+      },
+      {
+        "id": 8,
+        "image": "https://i.imgur.com/1cEwl2Y.png",
+        "name": "Fire Service Ladies Association",
+        "url": "https://fisla.org/"
+      },
+      {
+        "id": 9,
+        "image": "../assets/img/fisla.png",
+        "name": "Joyce Azumah",
+        "url": "https://joyceazumah.com/"
+      }
+    ]
+  }
+  
