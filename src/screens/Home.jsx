@@ -30,6 +30,7 @@ import { Footer } from "../components/footer";
 import projectsData from "./projectsData.json";
 import emailjs from '@emailjs/browser';
 import ToastService from 'react-material-toast';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const toast = ToastService.new({
     place: "topRight",
@@ -67,7 +68,12 @@ function ReadMore({ text }) {
 }
 
 export const Home = () => {
+  const [verified, setVerified] = useState(false);
 
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setVerified(true);
+  }
 
   const text = `My name is Christian Edem Kpegah, a front-end developer passionate about creating stunning and responsive websites that provide an exceptional user experience. With my extensive knowledge of HTML, CSS, and JavaScript, React, React Native, I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
 
@@ -86,6 +92,7 @@ export const Home = () => {
       .then((result) => {
           console.log(result.text);
           toast.success("Email Sent Successfully");
+          window.location.reload();
       }, (error) => {
           console.log(error.text);
           toast.error("Email Not Sent");
@@ -350,7 +357,12 @@ export const Home = () => {
                   </div>
                   <input type="email" name="user_email" id="" className="form-control mt-2" placeholder="Your Email" required />
                   <textarea name="message" id="" cols="30" rows="10" className="form-control mt-2" placeholder="Your Message" required></textarea>
-                  <button className="btn btn-light mt-2 w-100" type="submit" >Send Message</button>
+                  <ReCAPTCHA
+                    className="mt-2"
+                    sitekey="6LeHGzQnAAAAADzLZLRxLH-wyHSb76UBIXz9qbQP"
+                    onChange={onChange}
+                  />
+                  <button className="btn btn-light mt-2 w-100" type="submit" disabled={!verified} >Send Message</button>
                 </form>
                 <div className="socials text-center mt-2">
                 <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" ><LinkedInIcon className="social-icon" /></a>
