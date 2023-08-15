@@ -150,7 +150,7 @@ export const Home = () => {
                         <SchoolIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText  primary="B.Tech in Information and Commuinication Technology" secondary="Ho Technical University (2021 - 2022)" />
+                    <ListItemText  primary="B.Tech in Information and Communication Technology" secondary="Ho Technical University (2021 - 2022)" />
                   </ListItem>
                   <ListItem>
                     <ListItemAvatar>
@@ -158,7 +158,7 @@ export const Home = () => {
                         <SchoolIcon />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText  primary="HND in Information and Commuinication Technology" secondary="Ho Technical University (2018 - 2021)" />
+                    <ListItemText  primary="HND in Information and Communication Technology" secondary="Ho Technical University (2018 - 2021)" />
                   </ListItem>
                 </List>
               </div>
