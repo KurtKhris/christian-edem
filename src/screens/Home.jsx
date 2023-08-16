@@ -303,7 +303,7 @@ export const Home = () => {
       <div className="portfolio" id="portfolio">
         <div className="container">
           <h2 className="text-center" ><span className="text-white" >My</span> <span style={{color:"#FF5F6D"}} >Portfolio</span></h2>
-          <p className="text-center text-white" >Here are some of my projects I have worked on. Click on the project to view more details.</p>
+          <p className="text-center text-white" >These are some of the projects I have worked on. Click on the project to view more details.</p>
             <div className="row">
               {projectsData.projects.map((project) => (
                 <div className="col-sm-4 mt-3" key={project.id}>
