@@ -75,9 +75,9 @@ export const Home = () => {
     setVerified(true);
   }
 
-  const text = `My name is Christian Edem Kpegah, a front-end developer passionate about creating stunning and responsive websites that provide an exceptional user experience. With my extensive knowledge of HTML, CSS, and JavaScript, React, React Native, I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
+  const text = `My name is Christian Edem Kpegah, a front-end developer passionate about creating stunning and responsive websites that provide exceptional user experience. With my extensive knowledge of HTML, CSS, and JavaScript, React, React Native, I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
 
-  I have a strong attention to detail and a commitment to delivering high-quality work. I am constantly staying up-to-date with the latest web design trends and technologies, and I am always looking for ways to improve my skills and knowledge.
+  I pay attention to details and have a commitment to delivering high-quality work. I am constantly staying up-to-date with the latest web design trends and technologies, and I am always looking for ways to improve my skills and knowledge.
   
   Throughout my career, I have worked on a wide range of projects, from small landing pages to complex web applications. I am comfortable working independently or as part of a team, and I thrive in a collaborative environment where I can share my ideas and learn from others.
   
