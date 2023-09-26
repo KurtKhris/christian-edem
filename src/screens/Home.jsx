@@ -312,7 +312,7 @@ export const Home = () => {
                       <img src={project.image} alt="" className="card-img-top" />
                     </div>
                     <div className="card-body">
-                      <h5>{project.name}</h5>
+                      <h6>{project.name}</h6>
                       <a href={project.url} target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
                     </div>
                   </div>
