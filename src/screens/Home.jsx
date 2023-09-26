@@ -31,6 +31,7 @@ import projectsData from "./projectsData.json";
 import emailjs from '@emailjs/browser';
 import ToastService from 'react-material-toast';
 import ReCAPTCHA from "react-google-recaptcha";
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 
 const toast = ToastService.new({
     place: "topRight",
@@ -375,6 +376,19 @@ export const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="whatsapp">
+        <FloatingWhatsApp 
+          phoneNumber="+233247154259" 
+          accountName="Christian" 
+          avatar={pic} 
+          statusMessage="Available 24/7"
+          allowEsc
+          allowClickAway
+          notification
+          notificationSound={true}
+          darkMode={true}
+        />
       </div>
       <Footer/>
     </div>
