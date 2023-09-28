@@ -76,7 +76,7 @@ export const Home = () => {
     setVerified(true);
   }
 
-  const text = `My name is Christian Edem Kpegah, a Frontend Software Engineer passionate about creating stunning and responsive websites that provide exceptional user experience. With my extensive knowledge of HTML, CSS, and JavaScript, React, React Native, I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
+  const text = `My name is Christian Edem Kpegah, a Frontend Software Engineer passionate about creating stunning and responsive websites that provide exceptional user experience. With my extensive knowledge of HTML, CSS, JavaScript, React, React Native, and Angular I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
 
   I pay attention to details and have a commitment to delivering high-quality work. I am constantly staying up-to-date with the latest web design trends and technologies, and I am always looking for ways to improve my skills and knowledge.
   
