@@ -68,6 +68,11 @@
   font-family: 'Roboto', monospace;
 }
 
+.bg{
+  background-color: #03003D;
+  z-index: 1000;
+}
+
 .container-fluid{
   background-color: #03003D;
   padding-left: 0 !important;

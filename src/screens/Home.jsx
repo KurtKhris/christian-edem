@@ -1,5 +1,5 @@
 import React, {useState, useRef} from "react";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import Button from "@mui/material/Button";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -32,6 +32,8 @@ import emailjs from '@emailjs/browser';
 import ToastService from 'react-material-toast';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
+import NavBars from "../components/NavBars";
+// import { useLocation } from 'react-router-dom';
 
 const toast = ToastService.new({
     place: "topRight",
@@ -69,7 +71,33 @@ function ReadMore({ text }) {
 }
 
 export const Home = () => {
+  // const location = useLocation();
   const [verified, setVerified] = useState(false);
+
+
+  // useEffect(() => {
+  //   if (location.hash === '#about') {
+  //     const pricingSection = document.getElementById('about');
+  //     if (pricingSection) {
+  //       pricingSection.scrollIntoView();
+  //     }
+  //   } else if (location.hash === '#skills'){
+  //     const skillsSection = document.getElementById('skills');
+  //     if(skillsSection){
+  //       skillsSection.scrollIntoView();
+  //     }
+  //   }else if (location.hash === '#portfolio'){
+  //     const portfolioSection = document.getElementById('portfolio');
+  //     if(portfolioSection){
+  //       portfolioSection.scrollIntoView();
+  //     }
+  //   }else if (location.hash === '#contact'){
+  //     const contactSection = document.getElementById('contact');
+  //     if(contactSection){
+  //       contactSection.scrollIntoView();
+  //     }
+  //   }
+  // }, [location]);
 
   function onChange(value) {
     console.log("Captcha value:", value);
@@ -101,7 +129,7 @@ export const Home = () => {
   };
   return (
     <div>
-      <Navbar/>
+      <NavBars/>
       <div className="banner">
         <div className="container">
           <div className="row">
@@ -323,20 +351,24 @@ export const Home = () => {
             <div className="row">
               <div className="col-sm-4">
                 <div className="mb-3">
-                  <h6 className="text-white" >Phone:</h6>
                   <h6 className="text-white" ><PhoneIcon/> <span><a href="tel:+233247154259"> +233 24 715 4259</a></span> </h6>
                 </div>
                 <div className="mb-3">
-                  <h6 className="text-white" >WhatsApp:</h6>
                   <h6 className="text-white" ><WhatsAppIcon /><span><a href="https://wa.me/0247154259" target="_blank" rel="noreferrer"> +233 24 715 4259</a></span> </h6>
                 </div>
                 <div className="mb-3">
-                  <h6 className="text-white" >Email:</h6>
                   <h6 className="text-white" ><EmailIcon/> <span><a href="mailto:christiankpegah@gmail.com"> christiankpegah@gmail.com</a></span> </h6>
                 </div>
                 <div className="shaking-hands" >
                   <img src={shaking} className="img-fluid" alt="" />
                 </div>
+                <div className="socials text-center mt-2">
+                <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" ><LinkedInIcon className="social-icon" /></a>
+                <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" ><GitHubIcon className="social-icon" /></a>
+                <a href="https://twitter.com/kurt_khris" target="_blank" rel="noreferrer" ><TwitterIcon className="social-icon" /></a>
+                <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" ><InstagramIcon className="social-icon" /></a>
+                
+              </div>
               </div>
               <div className="col-sm-8">
                 <form ref={form}  onSubmit={sendEmail} >
@@ -357,13 +389,7 @@ export const Home = () => {
                   />
                   <button className="btn btn-light mt-2 w-100" type="submit" disabled={!verified} >Send Message</button>
                 </form>
-                <div className="socials text-center mt-2">
-                <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" ><LinkedInIcon className="social-icon" /></a>
-                <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" ><GitHubIcon className="social-icon" /></a>
-                <a href="https://twitter.com/kurt_khris" target="_blank" rel="noreferrer" ><TwitterIcon className="social-icon" /></a>
-                <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" ><InstagramIcon className="social-icon" /></a>
                 
-              </div>
               </div>
             </div>
           </div>
