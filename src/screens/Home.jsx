@@ -208,6 +208,14 @@ export const Home = () => {
                         <WorkIcon />
                       </Avatar>
                     </ListItemAvatar>
+                    <ListItemText  primary="Web/UI Developer" secondary="MyGhanaOnline (2021 - 2023)" />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <WorkIcon />
+                      </Avatar>
+                    </ListItemAvatar>
                     <ListItemText  primary="Junior Frontend Software Engineer" secondary="Stanbic Bank Ghana (2020 - 2021)" />
                   </ListItem>
                 </List>
