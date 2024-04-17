@@ -71,33 +71,8 @@ function ReadMore({ text }) {
 }
 
 export const Home = () => {
-  // const location = useLocation();
   const [verified, setVerified] = useState(false);
 
-
-  // useEffect(() => {
-  //   if (location.hash === '#about') {
-  //     const pricingSection = document.getElementById('about');
-  //     if (pricingSection) {
-  //       pricingSection.scrollIntoView();
-  //     }
-  //   } else if (location.hash === '#skills'){
-  //     const skillsSection = document.getElementById('skills');
-  //     if(skillsSection){
-  //       skillsSection.scrollIntoView();
-  //     }
-  //   }else if (location.hash === '#portfolio'){
-  //     const portfolioSection = document.getElementById('portfolio');
-  //     if(portfolioSection){
-  //       portfolioSection.scrollIntoView();
-  //     }
-  //   }else if (location.hash === '#contact'){
-  //     const contactSection = document.getElementById('contact');
-  //     if(contactSection){
-  //       contactSection.scrollIntoView();
-  //     }
-  //   }
-  // }, [location]);
 
   function onChange(value) {
     console.log("Captcha value:", value);
@@ -338,11 +313,11 @@ export const Home = () => {
                 <div className="col-sm-4 mt-3" key={project.id}>
                   <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
                     <div className="my-img p-3">
-                      <img src={project.image} alt="" className="card-img-top" />
+                      <img src={project.image} alt="" className="card-img-top" style={{borderRadius: 10}} />
                     </div>
-                    <div className="card-body">
+                    <div className="card-body text-center">
                       <h6>{project.name}</h6>
-                      <a href={project.url} target="_blank" rel="noreferrer" className="btn pro-btn">View Project</a>
+                      <a href={project.url} target="_blank" rel="noreferrer" className="btn pro-btn">Visit Website</a>
                     </div>
                   </div>
                 </div>
