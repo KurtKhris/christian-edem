@@ -1,5 +1,4 @@
 import React, {useState, useRef} from "react";
-// import Navbar from "../components/Navbar";
 import Button from "@mui/material/Button";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -33,7 +32,6 @@ import ToastService from 'react-material-toast';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import NavBars from "../components/NavBars";
-// import { useLocation } from 'react-router-dom';
 
 const toast = ToastService.new({
     place: "topRight",
@@ -69,9 +67,11 @@ function ReadMore({ text }) {
     </div>
   );
 }
+const projectsPerPage = 9;
 
 export const Home = () => {
   const [verified, setVerified] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   function onChange(value) {
@@ -101,6 +101,21 @@ export const Home = () => {
           console.log(error.text);
           toast.error("Email Not Sent");
       });
+  };
+
+  
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projectsData.projects.slice(indexOfFirstProject, indexOfLastProject);
+
+  const totalPages = Math.ceil(projectsData.projects.length / projectsPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
   return (
     <div>
@@ -309,7 +324,7 @@ export const Home = () => {
           <h2 className="text-center" ><span className="text-white" >My</span> <span style={{color:"#FF5F6D"}} >Portfolio</span></h2>
           <p className="text-center text-white" >These are some of the projects I have worked on. Click on the project to view more details.</p>
             <div className="row">
-              {projectsData.projects.map((project) => (
+              {currentProjects.map((project) => (
                 <div className="col-sm-4 mt-3" key={project.id}>
                   <div className="card shadow" style={{backgroundColor: "#0F0E50"}}>
                     <div className="my-img p-3">
@@ -322,7 +337,10 @@ export const Home = () => {
                   </div>
                 </div>
               ))}
-              
+            </div>
+            <div className="d-flex  pagination-controls justify-content-center mt-5">
+                <button onClick={handlePreviousPage} disabled={currentPage === 1} className="btn btn-light me-2">Previous</button>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages} className="btn btn-light">Next</button>
             </div>
         </div>
       </div>
