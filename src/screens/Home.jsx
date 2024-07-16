@@ -385,7 +385,7 @@ export const Home = () => {
                   <textarea name="message" id="" cols="30" rows="10" className="form-control mt-2" placeholder="Your Message" required></textarea>
                   <ReCAPTCHA
                     className="mt-2"
-                    sitekey="6LeHGzQnAAAAADzLZLRxLH-wyHSb76UBIXz9qbQP"
+                    sitekey="6LenFjQnAAAAAAnf4tWiT1mxmFnUM2HG1avDiW4V"
                     onChange={onChange}
                   />
                   <button className="btn btn-light mt-2 w-100" type="submit" disabled={!verified} >Send Message</button>
