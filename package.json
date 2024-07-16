@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/plugin-syntax-flow": "^7.24.7",
+    "@babel/plugin-transform-react-jsx": "^7.24.7",
+    "@babel/traverse": "^7.24.8",
     "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@emotion/unitless": "0.7.5",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
+    "@testing-library/dom": "^10.3.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -30,6 +35,8 @@
     "react-router-dom": "^6.22.3",
     "react-scripts": "^5.0.1",
     "react-scroll": "^1.8.9",
+    "styled-components": "^6.1.11",
+    "typescript": "^5.5.3",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
