@@ -126,7 +126,7 @@ export const Home = () => {
             message: userMessage
         };
 
-        const response = await fetch(`${baseURL}/api/send-email-enquiry`, {
+        const response = await fetch(`${baseURL}/api/send-email-contact`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
