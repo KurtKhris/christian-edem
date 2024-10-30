@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 import Button from "@mui/material/Button";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -27,11 +27,11 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import shaking from "../assets/img/shaking.jpg";
 import { Footer } from "../components/footer";
 import projectsData from "./projectsData.json";
-import emailjs from '@emailjs/browser';
 import ToastService from 'react-material-toast';
 import ReCAPTCHA from "react-google-recaptcha";
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import NavBars from "../components/NavBars";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 const toast = ToastService.new({
     place: "topRight",
@@ -41,6 +41,7 @@ const toast = ToastService.new({
 
 function ReadMore({ text }) {
   const [showFullText, setShowFullText] = useState(false);
+  
 
   function handleToggle() {
     setShowFullText(!showFullText);
@@ -72,6 +73,12 @@ const projectsPerPage = 9;
 export const Home = () => {
   const [verified, setVerified] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const baseURL = 'https://mailserver-jz3h.onrender.com';
+  const [isLoading, setIsLoading] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [userMessage, setUserMessage] = useState("");
 
 
   function onChange(value) {
@@ -89,19 +96,8 @@ export const Home = () => {
   
   Overall, I am a dedicated and passionate frontend developer who is committed to delivering high-quality work that exceeds expectations.`;
 
-  const form = useRef();
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs.sendForm('service_bxcljt5', 'template_xakzu08', form.current, 'RY1_htjR_99HHd0hX')
-      .then((result) => {
-          console.log(result.text);
-          toast.success("Email Sent Successfully");
-          window.location.reload();
-      }, (error) => {
-          console.log(error.text);
-          toast.error("Email Not Sent");
-      });
-  };
+
+ 
 
   
   const indexOfLastProject = currentPage * projectsPerPage;
@@ -117,9 +113,53 @@ export const Home = () => {
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
+
+  const sendEmail = async (userName, userEmail, userPhone, userMessage, e) => {
+    e.preventDefault();
+    setIsLoading(true)
+    try {
+        var templateParams = {
+            to: 'christiankpegah@gmail.com',
+            name: userName,
+            email: userEmail,
+            phone: userPhone,
+            message: userMessage
+        };
+
+        const response = await fetch(`${baseURL}/api/send-email-enquiry`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(templateParams),
+        });
+
+        if (!response.ok) {
+            // const errorData = await response.json(); 
+            toast.error("Message Not Sent!");
+        } else {
+            setUserName("");
+            setUserEmail("");
+            setUserPhone("");
+            setUserMessage("");
+            toast.success("Message Sent Successfully!!");
+        }
+    } catch (error) {
+        console.error('Error occurred while sending email:', error);
+    }finally{
+        setIsLoading(false)
+    }
+};
+
   return (
     <div>
       <NavBars/>
+      <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={isLoading}
+        >
+            <CircularProgress color="inherit" />
+        </Backdrop>
       <div className="banner">
         <div className="container">
           <div className="row">
@@ -372,17 +412,17 @@ export const Home = () => {
               </div>
               </div>
               <div className="col-sm-8">
-                <form ref={form}  onSubmit={sendEmail} >
+                <form onSubmit={(e) => sendEmail(userName, userEmail, userPhone, userMessage, e)} >
                   <div className="row">
                     <div className="col-sm mt-2">
-                      <input type="text" name="user_name" id="" className="form-control" placeholder="Your Name" required />
+                      <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} className="form-control" placeholder="Your Name" required />
                     </div>
                     <div className="col-sm mt-2">
-                      <input type="number" name="user_phone" id="" className="form-control" placeholder="Your Phone Number" required />
+                      <input type="number" value={userPhone} onChange={(e) => setUserPhone(e.target.value)} className="form-control" placeholder="Your Phone Number" required />
                     </div>
                   </div>
-                  <input type="email" name="user_email" id="" className="form-control mt-2" placeholder="Your Email" required />
-                  <textarea name="message" id="" cols="30" rows="10" className="form-control mt-2" placeholder="Your Message" required></textarea>
+                  <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="form-control mt-2" placeholder="Your Email" required />
+                  <textarea value={userMessage}  onChange={(e) => setUserMessage(e.target.value)} cols="30" rows="10" className="form-control mt-2" placeholder="Your Message" required></textarea>
                   <ReCAPTCHA
                     className="mt-2"
                     sitekey="6LeHGzQnAAAAADzLZLRxLH-wyHSb76UBIXz9qbQP"
