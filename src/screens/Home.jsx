@@ -20,7 +20,9 @@ import react from "../assets/img/react.svg";
 import reactNative from "../assets/img/reactnative.svg";
 import bootstrap from "../assets/img/bootstrap.svg";
 import git from "../assets/img/git.svg";
-import angular from "../assets/img/angular.svg";
+import wordpress from "../assets/img/wordpress.svg";
+import python from "../assets/img/python.svg";
+import php from "../assets/img/php.svg";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -32,6 +34,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import NavBars from "../components/NavBars";
 import { Backdrop, CircularProgress } from "@mui/material";
+import TechCard from "../components/TechCard";
 
 const toast = ToastService.new({
     place: "topRight",
@@ -70,6 +73,19 @@ function ReadMore({ text }) {
 }
 const projectsPerPage = 9;
 
+const techStack = [
+  { image: react, name: "React", color: "#80DEEA" },
+  { image: reactNative, name: "React Native", color: "#80DEEA" },
+  { image: python, name: "Python", color: "#F7DF1E" },
+  { image: js, name: "JavaScript", color: "#F3DB4C" },
+  { image: php, name: "Php", color: "#2E64FF" },
+  { image: bootstrap, name: "Bootstrap", color: "#673AB7" },
+  { image: git, name: "GitHub", color: "#000000" },
+  { image: wordpress, name: "WordPress", color: "#1B367B" },
+  { image: html, name: "Html", color: "#E65100" },
+  { image: css, name: "Css", color: "#0277BD" },
+];
+
 export const Home = () => {
   const [verified, setVerified] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -96,10 +112,6 @@ export const Home = () => {
   
   Overall, I am a dedicated and passionate frontend developer who is committed to delivering high-quality work that exceeds expectations.`;
 
-
- 
-
-  
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = projectsData.projects.slice(indexOfFirstProject, indexOfLastProject);
@@ -259,102 +271,9 @@ export const Home = () => {
           <div className="skills">
             <h3 className="text-white" >Skills</h3>
             <div className="row">
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={html} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#E65100"}} >HTML</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={css} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#0277BD"}} >CSS</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={js} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#F3DB4C"}} >JAVASCRIPT</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={react} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#80DEEA"}} >REACT</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={reactNative} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#80DEEA"}} >REACT NATIVE</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={bootstrap} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#673AB7"}} >BOOTSTRAP</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={git} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#000000"}} >GITHUB</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-3 mt-3">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="logo">
-                      <img src={angular} alt="" className="img-fluid" />
-                    </div>
-                    <div className="name">
-                      <h6 style={{color: "#B71C1C"}} >ANGULAR</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {techStack.map((tech, index) => (
+                <TechCard key={index} image={tech.image} name={tech.name} color={tech.color} />
+              ))}
             </div>
           </div>
         </div>

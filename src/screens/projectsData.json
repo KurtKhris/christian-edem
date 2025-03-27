@@ -20,7 +20,7 @@
     },
     {
       "id": 3,
-      "image": "https://i.imgur.com/u6Ny60b.png",
+      "image": "https://i.imgur.com/ZcZvyvn.png",
       "name": "WittyGenn",
       "url": "https://app.wittygenn.com/"
     },
@@ -38,69 +38,75 @@
     },
     {
       "id": 7,
-      "image": "https://i.imgur.com/NRssMw4.png",
+      "image": "https://i.imgur.com/mb7cBWU.png",
       "name": "Techieszon",
       "url": "https://techieszon.com/"
     },
     {
       "id": 8,
-      "image": "https://i.imgur.com/XKAGtnw.png",
+      "image": "https://i.imgur.com/TDBzbJZ.png",
       "name": "PAYDP",
       "url": "https://paydpghana.org/"
     },
     {
       "id": 9,
-      "image": "https://i.imgur.com/kGiRYxL.png",
+      "image": "https://i.imgur.com/JZk3MjC.png",
       "name": "QR GenN",
       "url": "https://qrgenn.techieszon.com/"
     },
     {
       "id": 10,
-      "image": "https://i.imgur.com/34tWw1A.png",
+      "image": "https://i.imgur.com/I7Puzpr.png",
       "name": "Joyce Azumah",
       "url": "https://joyceazumah.com/"
     },
     {
       "id": 11,
-      "image": "https://i.imgur.com/VbhY8Dh.png",
+      "image": "https://i.imgur.com/CAjJM09.png",
       "name": "Witty Innovations Consult",
       "url": "https://wittyinnovationsconsult.com/"
     },
     {
       "id": 12,
-      "image": "https://i.imgur.com/3cEgFwz.png",
+      "image": "https://i.imgur.com/pCvEm2L.png",
       "name": "The Capital Group Limited",
       "url": "https://capitalgroupghana.com/"
     },
     {
       "id": 13,
-      "image": "https://i.imgur.com/Y3QEofs.png",
+      "image": "https://i.imgur.com/e2CCkH7.png",
       "name": "Rent SIM & Connect GH",
       "url": "https://rentsimconnect.com/"
     },
     {
       "id": 14,
-      "image": "https://i.imgur.com/E4pUYQ3.png",
-      "name": "Global Education Pathfinders",
-      "url": "https://gepathfinders.com/"
-    },
-    {
-      "id": 15,
-      "image": "https://i.imgur.com/f7nMIvu.png",
-      "name": "Fire Service Ladies Association",
-      "url": "https://fisla.org/"
-    },
-    {
-      "id": 16,
-      "image": "https://i.imgur.com/RQHUKnz.png",
+      "image": "https://i.imgur.com/oz65Bky.png",
       "name": "Airside Hotel",
       "url": "https://airsidehotel.com.gh/"
     },
     {
-      "id": 17,
-      "image": "https://i.imgur.com/hWtHfTX.png",
+      "id": 15,
+      "image": "https://i.imgur.com/W6wOOcj.png",
       "name": "Soul Camp",
       "url": "https://soulcamp.org/"
+    },
+    {
+      "id": 16,
+      "image": "https://i.imgur.com/xbnekVD.png",
+      "name": "Little Believers",
+      "url": "https://littlebelieversofficial.com/"
+    },
+    {
+      "id": 17,
+      "image": "https://i.imgur.com/7iSA4wC.png",
+      "name": "Techieszon Host",
+      "url": "https://host.techieszon.com/"
+    },
+    {
+      "id": 18,
+      "image": "https://i.imgur.com/znqunuW.png",
+      "name": "Sterling Attorneys",
+      "url": "https://sterling-attorneys.com/"
     }
   ]
 }
