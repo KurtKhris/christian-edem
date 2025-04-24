@@ -23,6 +23,7 @@ import git from "../assets/img/git.svg";
 import wordpress from "../assets/img/wordpress.svg";
 import python from "../assets/img/python.svg";
 import php from "../assets/img/php.svg";
+import sql from "../assets/img/sql.png";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -79,6 +80,7 @@ const techStack = [
   { image: python, name: "Python", color: "#F7DF1E" },
   { image: js, name: "JavaScript", color: "#F3DB4C" },
   { image: php, name: "Php", color: "#2E64FF" },
+  { image: sql, name: "Sql", color: "#1B5BBA" },
   { image: bootstrap, name: "Bootstrap", color: "#673AB7" },
   { image: git, name: "GitHub", color: "#000000" },
   { image: wordpress, name: "WordPress", color: "#1B367B" },
