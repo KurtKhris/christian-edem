@@ -102,7 +102,7 @@ export const Home = () => {
     setVerified(true);
   }
 
-  const text = `My name is Christian Edem Kpegah, a Frontend Software Engineer passionate about creating stunning and responsive websites that provide exceptional user experience. With my extensive knowledge of HTML, CSS, JavaScript, React, React Native, and Angular I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
+  const text = `My name is Christian Edem Kpegah, a Frontend Software Engineer passionate about creating stunning and responsive websites that provide exceptional user experience. With my extensive knowledge of HTML, CSS, JavaScript, PHP, Python, React, and React Native. I can build dynamic and interactive web applications and mobile applications that meet the needs of clients and end-users.
 
   I pay attention to details and have a commitment to delivering high-quality work. I am constantly staying up-to-date with the latest web design trends and technologies, and I am always looking for ways to improve my skills and knowledge.
   
@@ -178,7 +178,7 @@ export const Home = () => {
             <div className="col-md-6 intro-text">
               <h6>Welcome to my world</h6>
               <h1 className="mb-0" >Hi, I'm Christian</h1>
-              <h3 ><span style={{color: "#F97294"}} >Frontend</span> Software <span style={{color: "#F49D71"}} >Engineer</span></h3>
+              <h3 ><span style={{color: "#F97294"}} >Software</span> Engineer </h3>
               <p className="text-white" >Visit my profile & Stay connected with me</p>
               <div className="socials">
                 <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" ><LinkedInIcon className="social-icon" /></a>
