@@ -2,6 +2,36 @@
   "projects": [
     {
       "id": 0,
+      "image": "https://i.imgur.com/ggeVdDR.png",
+      "name": "Finance Security Group Limited ",
+      "url": "https://financesecuritygroup.com/"
+    },
+    {
+      "id": 0,
+      "image": "https://i.imgur.com/tRAmWqp.png",
+      "name": "REFCON Consult",
+      "url": "https://www.refconconsult.com/"
+    },
+    {
+      "id": 0,
+      "image": "https://i.imgur.com/sBlHzAl.png",
+      "name": "Dormiflex Ghana",
+      "url": "https://dormiflexgh.com/"
+    },
+    {
+      "id": 0,
+      "image": "https://i.imgur.com/SK678Cj.png",
+      "name": "Paradise Media Hub",
+      "url": "https://www.pmh.techieszon.com/"
+    },
+    {
+      "id": 0,
+      "image": "https://i.imgur.com/HbV7nSV.png",
+      "name": "Techieszon SMS",
+      "url": "https://www.sms.techieszon.com/"
+    },
+    {
+      "id": 0,
       "image": "https://i.imgur.com/0WAqKA2.png",
       "name": "EKS Consults",
       "url": "https://www.eksconsults.com/"

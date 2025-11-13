@@ -24,6 +24,7 @@ import wordpress from "../assets/img/wordpress.svg";
 import python from "../assets/img/python.svg";
 import php from "../assets/img/php.svg";
 import sql from "../assets/img/sql.png";
+import ts from "../assets/img/typescript.png";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -86,6 +87,7 @@ const techStack = [
   { image: wordpress, name: "WordPress", color: "#1B367B" },
   { image: html, name: "Html", color: "#E65100" },
   { image: css, name: "Css", color: "#0277BD" },
+  { image: ts, name: "TypeScript", color: "#3178C6" },
 ];
 
 export const Home = () => {
