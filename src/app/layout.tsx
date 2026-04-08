@@ -9,6 +9,9 @@ import { Toaster } from "react-hot-toast";
 export const metadata = {
   title: 'Christian Edem Kpegah - Software Engineer | UI/UX Designer | Digital Skills Facilitator | Web Developer | Mobile App Developer',
   description: 'Portfolio of Christian Edem Kpegah',
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default function RootLayout({ children }) {
