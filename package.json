@@ -1,0 +1,73 @@
+{
+  "name": "my-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/plugin-syntax-flow": "^7.24.7",
+    "@babel/plugin-transform-react-jsx": "^7.24.7",
+    "@babel/traverse": "^7.24.8",
+    "@emailjs/browser": "^3.11.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@emotion/unitless": "0.7.5",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.2",
+    "@prisma/client": "6.4.1",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@vercel/analytics": "^1.0.0",
+    "add-dom-event-listener": "1.1.0",
+    "babel-plugin-styled-components": "2.1.4",
+    "bcrypt": "^6.0.0",
+    "camelize": "1.0.1",
+    "classnames": "2.3.2",
+    "cloudinary": "^2.9.0",
+    "component-classes": "1.2.6",
+    "component-indexof": "0.0.3",
+    "css-animation": "1.6.1",
+    "css-color-keywords": "1.0.0",
+    "next": "^16.2.2",
+    "next-auth": "^4.24.13",
+    "nodemailer": "^8.0.5",
+    "prisma": "6.4.1",
+    "react": "^19.2.4",
+    "react-async-script": "1.2.0",
+    "react-dom": "^19.2.4",
+    "react-floating-whatsapp": "^5.0.8",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hot-toast": "^2.6.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.22.3",
+    "react-scroll": "^1.8.9",
+    "styled-components": "^6.1.11",
+    "typescript": "^5.5.3"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "dotenv-cli": "^11.0.0"
+  }
+}
