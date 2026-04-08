@@ -1,35 +1,43 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import logo from "../assets/img/Logo.png";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 function NavBars() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <nav className="navbar navbar-expand-lg bg shadow sticky-top mb-4">
-        <div className="container">
-            <a className="navbar-brand" href="/">
-                <img src={logo.src} className="img-fluid py-2 me-5" width={200} alt='logo' />
-            </a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon bg-white"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                <a className="nav-link text-white" aria-current="page" href="/#about">About me</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link text-white" href="/#skills">Skills</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link text-white" href="/#portfolio">Portfolio</a>
-                </li>
-            </ul>
-            <div className="d-flex" >
-                <a href="/#contact" className='btn btn-light' >Contact Me</a>
-            </div>
-            </div>
+    <>
+      <nav className={`portfolio-nav ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-inner">
+          <a href="/"><img src={logo.src} className="nav-logo" alt="Christian Kpegah" /></a>
+          <ul className="nav-links">
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#skills">Skills</a></li>
+            <li><a href="/#portfolio">Portfolio</a></li>
+          </ul>
+          <a href="/#contact" className="nav-cta">Contact Me</a>
+          <button className="nav-toggler" onClick={() => setMobileOpen(!mobileOpen)} aria-label="toggle menu">
+            {mobileOpen ? <CloseIcon fontSize="small" /> : <MenuIcon fontSize="small" />}
+          </button>
         </div>
-    </nav>
-  )
+      </nav>
+      <div className={`nav-mobile ${mobileOpen ? 'open' : ''}`}>
+        <a href="/#about" onClick={() => setMobileOpen(false)}>About</a>
+        <a href="/#skills" onClick={() => setMobileOpen(false)}>Skills</a>
+        <a href="/#portfolio" onClick={() => setMobileOpen(false)}>Portfolio</a>
+        <a href="/#contact" onClick={() => setMobileOpen(false)} className="nav-cta" style={{ textAlign: 'center' }}>Contact Me</a>
+      </div>
+    </>
+  );
 }
 
-export default NavBars
+export default NavBars;

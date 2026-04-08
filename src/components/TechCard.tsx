@@ -1,15 +1,31 @@
-const TechCard = ({ image, name, color }) => {
+import React from 'react';
+
+interface TechCardProps {
+  image: string;
+  name: string;
+  color?: string;
+}
+
+const TechCard = ({ image, name, color = '#FF5F6D' }: TechCardProps) => {
   return (
-    <div className="col-6 col-md-3 mt-3">
-      <div className="card h-100">
-        <div className="card-body text-center">
-          <div className="logo">
-            <img src={image.src || image} alt={name} className="img-fluid" />
-          </div>
-          <div className="name mt-2">
-            <h6 style={{ color }} className="text-uppercase">{name}</h6>
-          </div>
+    <div className="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+      <div
+        className="skill-card"
+        onMouseEnter={(e) => {
+          const el = e.currentTarget;
+          el.style.borderColor = color;
+          el.style.boxShadow = `0 16px 40px ${color}22, 0 0 0 1px ${color}33`;
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget;
+          el.style.borderColor = '';
+          el.style.boxShadow = '';
+        }}
+      >
+        <div className="skill-icon-wrap">
+          <img src={image} alt={name} />
         </div>
+        <p className="skill-name">{name}</p>
       </div>
     </div>
   );

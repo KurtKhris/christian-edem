@@ -87,3 +87,23 @@ model Skill {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Education {
+  id          String   @id @default(cuid())
+  title       String
+  institution String
+  period      String
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model WorkExperience {
+  id        String   @id @default(cuid())
+  title     String
+  company   String
+  period    String
+  order     Int      @default(0)
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
