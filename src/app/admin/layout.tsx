@@ -22,6 +22,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               Tech Skills
             </Link>
           </li>
+          <li className="nav-item mb-2">
+            <Link href="/admin/resume" className="nav-link text-warning fw-bold">
+              Resume (Education & Work)
+            </Link>
+          </li>
           <li className="nav-item mt-5">
             <Link href="/" className="nav-link text-warning">
               &larr; Back to Site

@@ -2,19 +2,23 @@ import React from 'react';
 import { Home } from '../screens/Home';
 import { getProjects } from './actions/portfolio';
 import { getSkills } from './actions/skills';
+import { getEducation, getWorkExperience } from './actions/resume';
 
-export const revalidate = 0; // Dynamic route
+export const revalidate = 0;
 
 export default async function Page() {
-  const dbProjects = await getProjects();
-  const dbSkills = await getSkills();
-  
-  const visibleProjects = dbProjects.filter((p: any) => p.isVisible);
-  const visibleSkills = dbSkills.filter((s: any) => s.isVisible);
+  const [dbProjects, dbSkills, dbEducation, dbWork] = await Promise.all([
+    getProjects(), getSkills(), getEducation(), getWorkExperience()
+  ]);
 
   return (
     <div className="container-fluid">
-      <Home initialProjects={visibleProjects} initialSkills={visibleSkills} />
+      <Home
+        initialProjects={dbProjects.filter((p: any) => p.isVisible)}
+        initialSkills={dbSkills.filter((s: any) => s.isVisible)}
+        initialEducation={dbEducation.filter((e: any) => e.isVisible)}
+        initialWork={dbWork.filter((w: any) => w.isVisible)}
+      />
     </div>
   );
 }

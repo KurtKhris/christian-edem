@@ -24,7 +24,7 @@ import { Backdrop, CircularProgress } from "@mui/material";
 const ROLES = ["Frontend Engineer", "React Developer", "Mobile App Developer"];
 const projectsPerPage = 9;
 
-export const Home = ({ initialProjects = [], initialSkills = [] }: { initialProjects?: any[], initialSkills?: any[] }) => {
+export const Home = ({ initialProjects = [], initialSkills = [], initialEducation = [], initialWork = [] }: { initialProjects?: any[], initialSkills?: any[], initialEducation?: any[], initialWork?: any[] }) => {
   const [verified, setVerified] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -131,36 +131,36 @@ export const Home = ({ initialProjects = [], initialSkills = [] }: { initialProj
                 <div className="col-md-6">
                   <h5 className="section-label" style={{ marginBottom: '1rem' }}>Academic Qualification</h5>
                   <div className="timeline">
-                    <div className="tl-item">
-                      <p className="tl-title">B.Tech in Information & Communication Technology</p>
-                      <p className="tl-org">Ho Technical University</p>
-                      <p className="tl-period">2021 – 2022</p>
-                    </div>
-                    <div className="tl-item">
-                      <p className="tl-title">HND in Information & Communication Technology</p>
-                      <p className="tl-org">Ho Technical University</p>
-                      <p className="tl-period">2018 – 2021</p>
-                    </div>
+                    {initialEducation.length > 0 ? initialEducation.map((e: any) => (
+                      <div key={e.id} className="tl-item">
+                        <p className="tl-title">{e.title}</p>
+                        <p className="tl-org">{e.institution}</p>
+                        <p className="tl-period">{e.period}</p>
+                      </div>
+                    )) : (
+                      <>
+                        <div className="tl-item"><p className="tl-title">B.Tech in Information & Communication Technology</p><p className="tl-org">Ho Technical University</p><p className="tl-period">2021 – 2022</p></div>
+                        <div className="tl-item"><p className="tl-title">HND in Information & Communication Technology</p><p className="tl-org">Ho Technical University</p><p className="tl-period">2018 – 2021</p></div>
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="col-md-6">
                   <h5 className="section-label" style={{ marginBottom: '1rem' }}>Work Experience</h5>
                   <div className="timeline">
-                    <div className="tl-item">
-                      <p className="tl-title">Frontend Engineer / UI/UX</p>
-                      <p className="tl-org">Techieszon</p>
-                      <p className="tl-period">2021 – Present</p>
-                    </div>
-                    <div className="tl-item">
-                      <p className="tl-title">Web / UI Developer</p>
-                      <p className="tl-org">MyGhanaOnline</p>
-                      <p className="tl-period">2021 – 2023</p>
-                    </div>
-                    <div className="tl-item">
-                      <p className="tl-title">Junior Frontend Engineer</p>
-                      <p className="tl-org">Stanbic Bank Ghana</p>
-                      <p className="tl-period">2020 – 2021</p>
-                    </div>
+                    {initialWork.length > 0 ? initialWork.map((w: any) => (
+                      <div key={w.id} className="tl-item">
+                        <p className="tl-title">{w.title}</p>
+                        <p className="tl-org">{w.company}</p>
+                        <p className="tl-period">{w.period}</p>
+                      </div>
+                    )) : (
+                      <>
+                        <div className="tl-item"><p className="tl-title">Frontend Engineer / UI/UX</p><p className="tl-org">Techieszon</p><p className="tl-period">2021 – Present</p></div>
+                        <div className="tl-item"><p className="tl-title">Web / UI Developer</p><p className="tl-org">MyGhanaOnline</p><p className="tl-period">2021 – 2023</p></div>
+                        <div className="tl-item"><p className="tl-title">Junior Frontend Engineer</p><p className="tl-org">Stanbic Bank Ghana</p><p className="tl-period">2020 – 2021</p></div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
