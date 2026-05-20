@@ -510,39 +510,6 @@ textarea.f-input { resize:vertical; min-height:130px; width:100%; display:block;
 .soc-link { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid var(--border); color:var(--text-secondary); text-decoration:none; transition:all var(--ease); background: var(--glass-bg); }
 .soc-link:hover { border-color:var(--accent-from); color:var(--accent-from); background:rgba(255,95,109,.1); box-shadow: 0 0 14px rgba(255,95,109,0.3); transform:translateY(-2px); }
 
-/* ── BLOG ── */
-.markdown-body { color: rgba(255,255,255,0.9); line-height: 1.8; font-size: 1.15rem; }
-.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 { color: #fff; margin-top: 2.5rem; margin-bottom: 1.25rem; font-weight: 700; }
-.markdown-body p { margin-bottom: 1.5rem; }
-.markdown-body strong { color: #fff; }
-.markdown-body a { color: var(--accent-from); text-decoration: underline; }
-.markdown-body code { background: rgba(255,255,255,0.1); color: #fff; padding: .2rem .4rem; border-radius: 4px; font-size: .9em; }
-.markdown-body pre { background: #0d0d1a; padding: 1.25rem; border-radius: 12px; margin: 2rem 0; overflow-x: auto; border: 1px solid var(--glass-border); }
-.markdown-body pre code { background: none; padding: 0; font-size: .9rem; }
-.markdown-body blockquote { border-left: 4px solid var(--accent-from); padding-left: 1.5rem; margin: 2rem 0; font-style: italic; color: rgba(255,255,255,0.7); }
-.markdown-body img { max-width: 100%; border-radius: 12px; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-.markdown-body ul, .markdown-body ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
-.markdown-body li { margin-bottom: .5rem; }
-
-.blog-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  backdrop-filter: var(--blur);
-  transition: transform var(--ease), background var(--ease), border-color var(--ease), box-shadow var(--ease);
-}
-.blog-card:hover {
-  transform: translateY(-6px);
-  background: var(--glass-bg-hover);
-  border-color: var(--border-hover);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
-}
-.text-truncate-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 
 /* ── FOOTER ── */
 .portfolio-footer {
@@ -557,8 +524,6 @@ textarea.f-input { resize:vertical; min-height:130px; width:100%; display:block;
 .footer-text { color:var(--text-muted) !important; font-size:.85rem; margin:0; }
 .footer-links a { color: var(--text-muted) !important; text-decoration:none; transition:color var(--ease); font-size:.875rem; }
 .footer-links a:hover { color:#fff !important; }
-.footer-links a.footer-blog { color: var(--accent-from) !important; font-weight:600; }
-.footer-links a.footer-blog:hover { color: var(--accent-to) !important; }
 
 /* ── GLOBAL TEXT OVERRIDES ── */
 .section-wrap, .section-wrap * { color: inherit; }

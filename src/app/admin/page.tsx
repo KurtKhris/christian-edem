@@ -11,7 +11,6 @@ import WorkIcon from '@mui/icons-material/Work';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import ArticleIcon from '@mui/icons-material/Article';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import DownloadIcon from '@mui/icons-material/Download';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -28,7 +27,6 @@ const shortcuts = [
   { href: '/admin/skills',       label: 'Skills',       icon: <FlashOnIcon />,       desc: 'Tech stack',             color: '#f59e0b', glow: 'rgba(245,158,11,0.25)' },
   { href: '/admin/resume',       label: 'Resume',       icon: <DescriptionIcon />,   desc: 'Education & work',       color: '#10b981', glow: 'rgba(16,185,129,0.25)' },
   { href: '/admin/testimonials', label: 'Testimonials', icon: <FormatQuoteIcon />,   desc: 'Client reviews',         color: '#ec4899', glow: 'rgba(236,72,153,0.25)' },
-  { href: '/admin/blog',         label: 'Blog',         icon: <ArticleIcon />,       desc: 'Write articles',         color: '#3b82f6', glow: 'rgba(59,130,246,0.25)' },
 ];
 
 function getGreeting() {
