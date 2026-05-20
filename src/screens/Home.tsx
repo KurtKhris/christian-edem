@@ -134,10 +134,42 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                 <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon fontSize="small" /></a>
               </div>
             </div>
-            <div className="col-lg-5 hero-img-wrap">
-              <div className="hero-ring">
-                <div className="hero-ring-spinner"></div>
-                <img src={pic.src} alt="Christian Kpegah" />
+            <div className="col-lg-5 hero-stats-col">
+              <div className="hero-stats-wrap">
+                {/* Central glow */}
+                <div className="hero-stats-glow"></div>
+
+                <div className="hero-stat-card hero-stat-1">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(99,102,241,0.15)', color: '#818cf8' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#818cf8' }}>5+</div>
+                  <div className="hero-stat-label">Years Experience</div>
+                </div>
+
+                <div className="hero-stat-card hero-stat-2">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(255,95,109,0.15)', color: '#FF5F6D' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#FF5F6D' }}>10+</div>
+                  <div className="hero-stat-label">Projects Shipped</div>
+                </div>
+
+                <div className="hero-stat-card hero-stat-3">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(16,185,129,0.15)', color: '#34d399' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#34d399' }}>2</div>
+                  <div className="hero-stat-label">Play Store Apps</div>
+                </div>
+
+                <div className="hero-stat-card hero-stat-4">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(245,158,11,0.15)', color: '#fbbf24' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#fbbf24' }}>5</div>
+                  <div className="hero-stat-label">Industries Served</div>
+                </div>
               </div>
             </div>
           </div>
@@ -164,9 +196,9 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
               <span className="section-label">Get to know me</span>
               <h2 className="section-heading">About <span className="gradient-text">Me</span></h2>
               <div className="about-bio">
-                <p>My name is Christian Edem Kpegah, a Frontend Software Engineer passionate about creating stunning and responsive websites that provide exceptional user experience. With extensive knowledge of HTML, CSS, JavaScript, PHP, Python, React, and React Native, I build dynamic web and mobile applications.</p>
-                <p>I pay attention to detail and am committed to delivering high-quality work, constantly staying up-to-date with the latest trends and technologies. I've worked on projects ranging from small landing pages to complex web applications — independently and as part of teams.</p>
-                <p>In addition to my technical skills, I have excellent communication and project management abilities, ensuring project goals are met on time and within budget.</p>
+                <p>I'm Christian Edem Kpegah, a Software Engineer and Technical Lead with 4+ years of experience delivering full-stack web and mobile applications across fintech, e-commerce, healthcare, banking, and tourism sectors in Ghana and beyond. I currently lead platform development at Gilkup Technologies while maintaining an active hands-on engineering role.</p>
+                <p>My core expertise spans React, React Native, Next.js, and TypeScript, with deep experience integrating payment gateways, real-time systems, and third-party APIs. I've taken products from architecture through deployment — including published apps on the Google Play Store and production systems serving real users.</p>
+                <p>Beyond building, I'm passionate about growing the next generation of developers through mentorship, structured training, and team leadership — bridging technical execution with strategic business goals.</p>
               </div>
 
               <div className="row mt-4 g-4">
