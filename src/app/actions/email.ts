@@ -237,9 +237,9 @@ export async function sendContactEmail(data: { name: string; email: string; phon
 
     revalidatePath("/admin");
     return { success: true };
-  } catch (error) {
-    console.error("Error sending email", error);
-    return { success: false, error: "Email could not be sent" };
+  } catch (error: any) {
+    console.error("[contact] email/db error:", error?.message ?? error);
+    return { success: false, error: error?.message ?? "Email could not be sent" };
   }
 }
 
