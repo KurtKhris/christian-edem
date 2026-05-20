@@ -385,13 +385,13 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                   </div>
                   <input type="email" className="f-input" style={{ marginBottom: '1rem', display: 'block', width: '100%' }} placeholder="Email Address" value={userEmail} onChange={e => setUserEmail(e.target.value)} required />
                   <textarea className="f-input" placeholder="Your Message" value={userMessage} onChange={e => setUserMessage(e.target.value)} required />
-                  <ReCAPTCHA
+                  {/* <ReCAPTCHA
                     className="mt-2 mb-3"
                     sitekey="6LeHGzQnAAAAADzLZLRxLH-wyHSb76UBIXz9qbQP"
                     onChange={(v) => setVerified(!!v)}
                     theme="dark"
-                  />
-                  <button className="btn-send" type="submit" disabled={!verified}>
+                  /> */}
+                  <button className="btn-send" type="submit">
                     Send Message →
                   </button>
                 </form>
