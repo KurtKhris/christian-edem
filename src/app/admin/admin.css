@@ -676,6 +676,23 @@
   margin-bottom: 0.5rem;
 }
 
+.admin-alert-error {
+  background: rgba(255,85,85,0.1);
+  border: 1px solid rgba(255,85,85,0.3);
+  color: #ff6b6b;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+}
+.admin-alert-success {
+  background: rgba(80,250,123,0.08);
+  border: 1px solid rgba(80,250,123,0.25);
+  color: #50fa7b;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+}
+
 .admin-form-group {
   margin-bottom: 1.25rem;
 }

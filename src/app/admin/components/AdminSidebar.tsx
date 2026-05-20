@@ -8,6 +8,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import SettingsIcon from '@mui/icons-material/Settings';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -18,6 +19,7 @@ const navItems = [
   { href: '/admin/skills',       label: 'Skills',       icon: <FlashOnIcon fontSize="small" /> },
   { href: '/admin/resume',       label: 'Resume',       icon: <DescriptionIcon fontSize="small" /> },
   { href: '/admin/testimonials', label: 'Testimonials', icon: <FormatQuoteIcon fontSize="small" /> },
+  { href: '/admin/settings',    label: 'Settings',      icon: <SettingsIcon fontSize="small" /> },
 ];
 
 export default function AdminSidebar() {
