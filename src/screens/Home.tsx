@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -7,8 +7,9 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import SchoolIcon from '@mui/icons-material/School';
-import WorkIcon from '@mui/icons-material/Work';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import CodeIcon from '@mui/icons-material/Code';
 import pic from "../assets/img/self2.png";
 import me from "../assets/img/me.jpg";
 import shaking from "../assets/img/shaking.jpg";
@@ -20,11 +21,15 @@ import NavBars from "../components/NavBars";
 import TechCard from "../components/TechCard";
 import { sendContactEmail } from "../app/actions/email";
 import { Backdrop, CircularProgress } from "@mui/material";
+import TerminalIcon from '@mui/icons-material/Terminal';
+import TerminalOverlay from "../components/TerminalOverlay";
+import { trackCVDownload } from "../app/actions/analytics";
+import TestimonialSlider from "../components/TestimonialSlider";
 
 const ROLES = ["Frontend Engineer", "React Developer", "Mobile App Developer"];
 const projectsPerPage = 9;
 
-export const Home = ({ initialProjects = [], initialSkills = [], initialEducation = [], initialWork = [] }: { initialProjects?: any[], initialSkills?: any[], initialEducation?: any[], initialWork?: any[] }) => {
+export const Home = ({ initialProjects = [], initialSkills = [], initialEducation = [], initialWork = [], testimonials = [] }: { initialProjects?: any[], initialSkills?: any[], initialEducation?: any[], initialWork?: any[], testimonials?: any[] }) => {
   const [verified, setVerified] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -33,12 +38,42 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
   const [userEmail, setUserEmail] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [userMessage, setUserMessage] = useState("");
+  const [showScrollBtn, setShowScrollBtn] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
+  // Scroll to top + scroll btn
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex(i => (i + 1) % ROLES.length);
-    }, 2800);
+    const handleScroll = () => setShowScrollBtn(window.scrollY > 400);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Role rotation
+  useEffect(() => {
+    const interval = setInterval(() => setRoleIndex(i => (i + 1) % ROLES.length), 2800);
     return () => clearInterval(interval);
+  }, []);
+
+  // Terminal toggle hotkey
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "`" || e.key === "~") { e.preventDefault(); setIsTerminalOpen(prev => !prev); }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // IntersectionObserver scroll animations
+  useEffect(() => {
+    const els = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); } }),
+      { threshold: 0.12 }
+    );
+    els.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const currentProjects = initialProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
@@ -67,6 +102,13 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
 
       {/* ── HERO ── */}
       <section className="hero-section" id="home">
+        {/* Background orbs */}
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
+        {/* Grid texture overlay */}
+        <div className="hero-grid-overlay"></div>
+
         <div className="section-wrap w-100">
           <div className="row align-items-center g-5">
             <div className="col-lg-7 hero-content">
@@ -74,36 +116,67 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
               <h1 className="hero-name">Hi, I'm Christian</h1>
               <p className="hero-role">
                 <span className="rotating">{ROLES[roleIndex]}</span>
+                <span className="hero-cursor"></span>
               </p>
               <p className="hero-bio">
                 Passionate about crafting stunning, high-performance web experiences. I turn complex problems into elegant digital solutions.
               </p>
               <div className="hero-actions">
                 <a href="/#portfolio" className="btn-grad">View My Work</a>
-                <a
-                  href="https://docs.google.com/document/d/1r3WOGWwsnCC6y5ntL2te5uzs002FWzRp4gXz6etb9dI/edit"
-                  target="_blank" rel="noreferrer" className="btn-ghost"
-                >
-                  Download CV
-                </a>
+                <form action={trackCVDownload} style={{ display: 'inline' }}>
+                  <button type="submit" className="btn-ghost">Download CV</button>
+                </form>
               </div>
               <div className="hero-socials">
-                <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer"><LinkedInIcon fontSize="small" /></a>
-                <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer"><GitHubIcon fontSize="small" /></a>
-                <a href="https://twitter.com/kurt_khris" target="_blank" rel="noreferrer"><TwitterIcon fontSize="small" /></a>
-                <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer"><InstagramIcon fontSize="small" /></a>
+                <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedInIcon fontSize="small" /></a>
+                <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" aria-label="GitHub"><GitHubIcon fontSize="small" /></a>
+                <a href="https://twitter.com/kurt_khris" target="_blank" rel="noreferrer" aria-label="Twitter"><TwitterIcon fontSize="small" /></a>
+                <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon fontSize="small" /></a>
               </div>
             </div>
-            <div className="col-lg-5 hero-img-wrap">
-              <div className="hero-ring">
-                <img src={pic.src} alt="Christian Kpegah" />
+            <div className="col-lg-5 hero-stats-col">
+              <div className="hero-stats-wrap">
+                {/* Central glow */}
+                <div className="hero-stats-glow"></div>
+
+                <div className="hero-stat-card hero-stat-1">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(99,102,241,0.15)', color: '#818cf8' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#818cf8' }}>5+</div>
+                  <div className="hero-stat-label">Years Experience</div>
+                </div>
+
+                <div className="hero-stat-card hero-stat-2">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(255,95,109,0.15)', color: '#FF5F6D' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#FF5F6D' }}>10+</div>
+                  <div className="hero-stat-label">Projects Shipped</div>
+                </div>
+
+                <div className="hero-stat-card hero-stat-3">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(16,185,129,0.15)', color: '#34d399' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#34d399' }}>2</div>
+                  <div className="hero-stat-label">Play Store Apps</div>
+                </div>
+
+                <div className="hero-stat-card hero-stat-4">
+                  <div className="hero-stat-icon" style={{ background: 'rgba(245,158,11,0.15)', color: '#fbbf24' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  </div>
+                  <div className="hero-stat-number" style={{ color: '#fbbf24' }}>5</div>
+                  <div className="hero-stat-label">Industries Served</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="scroll-cue">
           <span>Scroll</span>
-          <div className="scroll-dot"></div>
+          <div className="scroll-chevron"></div>
         </div>
       </section>
 
@@ -111,20 +184,21 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
 
       {/* ── ABOUT ── */}
       <section className="about-section" id="about">
+        <div className="orb orb-1" style={{ width: 400, height: 400, opacity: 0.6 }}></div>
         <div className="section-wrap">
           <div className="row align-items-stretch g-5">
-            <div className="col-lg-5" style={{ display: 'flex' }}>
-              <div className="about-photo" style={{ flex: 1 }}>
+            <div className="col-lg-5 animate-on-scroll" style={{ display: 'flex' }}>
+              <div className="about-photo-wrap" style={{ flex: 1 }}>
                 <img src={me.src} alt="Christian" />
               </div>
             </div>
-            <div className="col-lg-7">
+            <div className="col-lg-7 animate-on-scroll" style={{ transitionDelay: '0.15s' }}>
               <span className="section-label">Get to know me</span>
               <h2 className="section-heading">About <span className="gradient-text">Me</span></h2>
               <div className="about-bio">
-                <p>My name is Christian Edem Kpegah, a Frontend Software Engineer passionate about creating stunning and responsive websites that provide exceptional user experience. With extensive knowledge of HTML, CSS, JavaScript, PHP, Python, React, and React Native, I build dynamic web and mobile applications.</p>
-                <p>I pay attention to detail and am committed to delivering high-quality work, constantly staying up-to-date with the latest trends and technologies. I've worked on projects ranging from small landing pages to complex web applications — independently and as part of teams.</p>
-                <p>In addition to my technical skills, I have excellent communication and project management abilities, ensuring project goals are met on time and within budget.</p>
+                <p>I'm Christian Edem Kpegah, a Software Engineer and Technical Lead with 4+ years of experience delivering full-stack web and mobile applications across fintech, e-commerce, healthcare, banking, and tourism sectors in Ghana and beyond. I currently lead platform development at Gilkup Technologies while maintaining an active hands-on engineering role.</p>
+                <p>My core expertise spans React, React Native, Next.js, and TypeScript, with deep experience integrating payment gateways, real-time systems, and third-party APIs. I've taken products from architecture through deployment — including published apps on the Google Play Store and production systems serving real users.</p>
+                <p>Beyond building, I'm passionate about growing the next generation of developers through mentorship, structured training, and team leadership — bridging technical execution with strategic business goals.</p>
               </div>
 
               <div className="row mt-4 g-4">
@@ -174,7 +248,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
       {/* ── SKILLS ── */}
       <section className="skills-section" id="skills">
         <div className="section-wrap">
-          <div className="text-center mb-5">
+          <div className="text-center mb-5 animate-on-scroll">
             <span className="section-label">What I work with</span>
             <h2 className="section-heading">My <span className="gradient-text">Tech Stack</span></h2>
           </div>
@@ -185,7 +259,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
               ))}
             </div>
           ) : (
-            <p className="text-center" style={{ color: 'var(--text-muted)' }}>Skills coming soon...</p>
+            <p className="text-center animate-on-scroll" style={{ color: 'var(--text-muted)' }}>Skills coming soon...</p>
           )}
         </div>
       </section>
@@ -194,8 +268,9 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
 
       {/* ── PORTFOLIO ── */}
       <section className="portfolio-section" id="portfolio">
+        <div className="orb orb-2" style={{ opacity: 0.5 }}></div>
         <div className="section-wrap">
-          <div className="text-center mb-5">
+          <div className="text-center mb-5 animate-on-scroll">
             <span className="section-label">What I've built</span>
             <h2 className="section-heading">My <span className="gradient-text">Portfolio</span></h2>
             <p style={{ color: 'var(--text-secondary)', maxWidth: 520, margin: '0 auto' }}>
@@ -204,13 +279,34 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
           </div>
           {currentProjects.length > 0 ? (
             <div className="row g-4">
-              {currentProjects.map((project: any) => (
+              {currentProjects.map((project: any, i: number) => (
                 <div className="col-sm-6 col-lg-4" key={project.id}>
                   <div className="port-card">
-                    <img src={project.image} alt={project.name} className="port-img" />
+                    <div className="port-img-wrap">
+                      <img src={project.image} alt={project.name} className="port-img" />
+                      <div className="port-img-overlay">
+                        {project.url && (
+                          <a href={project.url} target="_blank" rel="noreferrer" className="port-overlay-btn" title="Visit Site">
+                            <OpenInNewIcon fontSize="small" />
+                          </a>
+                        )}
+                        {project.repoUrl && (
+                          <a href={project.repoUrl} target="_blank" rel="noreferrer" className="port-overlay-btn" title="View Code">
+                            <CodeIcon fontSize="small" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
                     <div className="port-body">
                       <p className="port-title">{project.name}</p>
                       {project.description && <p className="port-desc">{project.description}</p>}
+                      {project.techStack && project.techStack.length > 0 && (
+                        <div className="port-tags">
+                          {(Array.isArray(project.techStack) ? project.techStack : project.techStack.split(',')).slice(0, 4).map((tag: string, ti: number) => (
+                            <span key={ti} className="port-tag">{tag.trim()}</span>
+                          ))}
+                        </div>
+                      )}
                       {project.url && (
                         <a href={project.url} target="_blank" rel="noreferrer" className="btn-visit">Visit Website</a>
                       )}
@@ -220,12 +316,21 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
               ))}
             </div>
           ) : (
-            <p className="text-center" style={{ color: 'var(--text-muted)' }}>Projects coming soon...</p>
+            <p className="text-center animate-on-scroll" style={{ color: 'var(--text-muted)' }}>Projects coming soon...</p>
           )}
           {totalPages > 1 && (
-            <div className="d-flex justify-content-center gap-3 mt-5">
-              <button className="pag-btn" onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} disabled={currentPage === 1}>← Previous</button>
-              <button className="pag-btn" onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages}>Next →</button>
+            <div className="d-flex justify-content-center align-items-center gap-2 mt-5">
+              <button className="pag-btn" onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} disabled={currentPage === 1}>
+                ← Prev
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button key={i} className={`pag-page ${currentPage === i + 1 ? 'active' : ''}`} onClick={() => setCurrentPage(i + 1)}>
+                  {i + 1}
+                </button>
+              ))}
+              <button className="pag-btn" onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages}>
+                Next →
+              </button>
             </div>
           )}
         </div>
@@ -233,10 +338,16 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
 
       <div className="section-sep"></div>
 
+      <TestimonialSlider testimonials={testimonials} />
+
+      <div className="section-sep"></div>
+
       {/* ── CONTACT ── */}
       <section className="contact-section" id="contact">
+        <div className="orb orb-1" style={{ opacity: 0.5 }}></div>
+        <div className="orb orb-2" style={{ width: 300, height: 300, opacity: 0.4 }}></div>
         <div className="section-wrap">
-          <div className="text-center mb-5">
+          <div className="text-center mb-5 animate-on-scroll">
             <span className="section-label">Let's work together</span>
             <h2 className="section-heading">Get In <span className="gradient-text">Touch</span></h2>
             <p style={{ color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto' }}>
@@ -244,7 +355,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
             </p>
           </div>
           <div className="row g-5">
-            <div className="col-lg-4">
+            <div className="col-lg-4 animate-on-scroll">
               <a href="tel:+233247154259" className="contact-chip">
                 <div className="chip-icon"><PhoneIcon fontSize="small" /></div>
                 <div><span className="chip-label">Phone</span><span className="chip-value">+233 24 715 4259</span></div>
@@ -257,15 +368,15 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                 <div className="chip-icon"><EmailIcon fontSize="small" /></div>
                 <div><span className="chip-label">Email</span><span className="chip-value">christiankpegah@gmail.com</span></div>
               </a>
-              <img src={shaking.src} alt="" style={{ width: '100%', borderRadius: 16, marginTop: '1.5rem', opacity: .85 }} />
+              <img src={shaking.src} alt="" style={{ width: '100%', borderRadius: 16, marginTop: '1.5rem', opacity: .8, border: '1px solid var(--glass-border)' }} />
               <div className="contact-socials">
-                <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" className="soc-link"><LinkedInIcon fontSize="small" /></a>
-                <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" className="soc-link"><GitHubIcon fontSize="small" /></a>
-                <a href="https://twitter.com/kurt_khris" target="_blank" rel="noreferrer" className="soc-link"><TwitterIcon fontSize="small" /></a>
-                <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" className="soc-link"><InstagramIcon fontSize="small" /></a>
+                <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" className="soc-link" aria-label="LinkedIn"><LinkedInIcon fontSize="small" /></a>
+                <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" className="soc-link" aria-label="GitHub"><GitHubIcon fontSize="small" /></a>
+                <a href="https://twitter.com/kurt_khris" target="_blank" rel="noreferrer" className="soc-link" aria-label="Twitter"><TwitterIcon fontSize="small" /></a>
+                <a href="https://instagram.com/kurtkhris" target="_blank" rel="noreferrer" className="soc-link" aria-label="Instagram"><InstagramIcon fontSize="small" /></a>
               </div>
             </div>
-            <div className="col-lg-8">
+            <div className="col-lg-8 animate-on-scroll" style={{ transitionDelay: '0.15s' }}>
               <div className="contact-form-wrap">
                 <form onSubmit={sendEmail}>
                   <div className="form-row">
@@ -297,6 +408,23 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
         statusMessage="Available 24/7"
         allowEsc allowClickAway notification notificationSound darkMode
       />
+      <button
+        className={`scroll-top-btn ${showScrollBtn ? 'show' : ''}`}
+        onClick={scrollToTop}
+        title="Scroll to Top"
+      >
+        <KeyboardArrowUpIcon />
+      </button>
+
+      <button
+        className="terminal-toggle-btn"
+        onClick={() => setIsTerminalOpen(true)}
+        title="Open Developer Terminal (~)"
+      >
+        <TerminalIcon />
+      </button>
+
+      <TerminalOverlay isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />
       <Footer />
     </div>
   );

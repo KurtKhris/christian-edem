@@ -107,3 +107,29 @@ model WorkExperience {
   isVisible Boolean  @default(true)
   createdAt DateTime @default(now())
 }
+
+model DownloadMetric {
+  id           String   @id @default(cuid())
+  downloadedAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  author    String
+  role      String
+  content   String   @db.Text
+  order     Int      @default(0)
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   @db.Text
+  excerpt     String?  @db.Text
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

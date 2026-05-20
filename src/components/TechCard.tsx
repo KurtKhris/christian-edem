@@ -14,12 +14,16 @@ const TechCard = ({ image, name, color = '#FF5F6D' }: TechCardProps) => {
         onMouseEnter={(e) => {
           const el = e.currentTarget;
           el.style.borderColor = color;
-          el.style.boxShadow = `0 16px 40px ${color}22, 0 0 0 1px ${color}33`;
+          el.style.boxShadow = `0 0 24px ${color}55, 0 16px 40px rgba(0,0,0,0.4)`;
+          const iconWrap = el.querySelector('.skill-icon-wrap') as HTMLElement;
+          if (iconWrap) { iconWrap.style.borderColor = `${color}66`; iconWrap.style.boxShadow = `0 0 14px ${color}44`; }
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget;
           el.style.borderColor = '';
           el.style.boxShadow = '';
+          const iconWrap = el.querySelector('.skill-icon-wrap') as HTMLElement;
+          if (iconWrap) { iconWrap.style.borderColor = ''; iconWrap.style.boxShadow = ''; }
         }}
       >
         <div className="skill-icon-wrap">

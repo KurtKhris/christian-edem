@@ -1,14 +1,10 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import { SkillModal } from '../../../components/SkillModal';
 import { deleteSkill, toggleSkillVisibility, updateSkillOrder } from '../../actions/skills';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export const SkillsClient = ({ initialSkills }: { initialSkills: any[] }) => {
   const router = useRouter();
@@ -35,10 +31,10 @@ export const SkillsClient = ({ initialSkills }: { initialSkills: any[] }) => {
     if (!selectedSkill) return;
     try {
       await deleteSkill(selectedSkill.id);
-      toast.success("Skill deleted");
+      toast.success('Skill deleted');
       router.refresh();
     } catch (e) {
-      toast.error("Failed to delete skill");
+      toast.error('Failed to delete skill');
     }
   };
 
@@ -48,100 +44,122 @@ export const SkillsClient = ({ initialSkills }: { initialSkills: any[] }) => {
       toast.success(`Skill ${!currentStatus ? 'visible' : 'hidden'}`);
       router.refresh();
     } catch (error) {
-      toast.error("Failed to update visibility");
+      toast.error('Failed to update visibility');
     }
   };
 
   const handleOrderChange = async (id: string, newOrder: number) => {
     try {
       await updateSkillOrder(id, newOrder);
-      toast.success("Order updated");
+      toast.success('Order updated');
       router.refresh();
     } catch (error) {
-      toast.error("Failed to update order");
+      toast.error('Failed to update order');
     }
   };
 
   return (
     <>
-      <div className="d-flex justify-content-end mb-3">
-        <button className="btn btn-primary" onClick={handleCreateNew}>+ Add New Skill</button>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <span className="admin-badge admin-badge-info">{initialSkills.length} skills</span>
+        <button className="admin-btn admin-btn-primary" onClick={handleCreateNew}>
+          + Add Skill
+        </button>
       </div>
 
-      <div className="bg-dark rounded p-3 text-white border border-secondary mb-5">
-        <table className="table table-dark table-hover mb-0">
-          <thead>
-            <tr>
-              <th>Icon</th>
-              <th>Name</th>
-              <th>Hex Color</th>
-              <th>Order</th>
-              <th className="text-end">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {initialSkills.map((s) => (
-              <tr key={s.id} className="align-middle">
-                <td>
-                  {s.image ? (
-                    <img src={s.image} alt={s.name} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
-                  ) : (
-                    <span className="text-secondary">-</span>
-                  )}
-                </td>
-                <td className="fw-bold">{s.name}</td>
-                <td>
-                  <span className="badge rounded-pill" style={{ backgroundColor: s.color || '#333' }}>
-                    {s.color || 'None'}
-                  </span>
-                </td>
-                <td>
-                  <input 
-                    type="number" 
-                    className="form-control form-control-sm bg-dark text-white border-secondary" 
-                    style={{ width: '80px' }}
-                    defaultValue={s.order}
-                    onBlur={(e) => {
-                      const val = parseInt(e.target.value);
-                      if (val !== s.order) handleOrderChange(s.id, val);
-                    }}
-                  />
-                </td>
-                <td className="text-end">
-                  <button 
-                    onClick={() => handleToggleVisibility(s.id, s.isVisible)} 
-                    className={`btn btn-sm me-1 ${s.isVisible ? 'btn-success' : 'btn-outline-secondary'}`}
-                    title={s.isVisible ? "Hide from homepage" : "Show on homepage"}
-                    style={{ borderRadius: '8px' }}
-                  >
-                    {s.isVisible ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
-                  </button>
-                  <button 
-                    className="btn btn-sm btn-outline-info me-1" 
-                    onClick={() => handleEdit(s)}
-                    title="Edit Skill"
-                    style={{ borderRadius: '8px' }}
-                  >
-                    <EditIcon fontSize="small" />
-                  </button>
-                  <button 
-                    className="btn btn-sm btn-outline-danger px-1" 
-                    onClick={() => confirmDelete(s)}
-                    title="Delete Skill"
-                    style={{ borderRadius: '8px' }}
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {initialSkills.length === 0 && (
-              <tr>
-                <td colSpan={5} className="text-center text-secondary py-4">No skills found. Add your first skillset!</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+      <div className="admin-card">
+        <div className="admin-card-body" style={{ padding: 0 }}>
+          {initialSkills.length === 0 ? (
+            <div className="admin-empty">
+              <div className="admin-empty-icon">⚡</div>
+              <h3 className="admin-empty-title">No skills yet</h3>
+              <p className="admin-empty-text">Add your first tech skill</p>
+              <button className="admin-btn admin-btn-primary" onClick={handleCreateNew}>
+                + Add Skill
+              </button>
+            </div>
+          ) : (
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '60px' }}>Icon</th>
+                  <th>Name</th>
+                  <th style={{ width: '120px' }}>Color</th>
+                  <th style={{ width: '100px' }}>Order</th>
+                  <th style={{ width: '140px' }}>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {initialSkills.map((s) => (
+                  <tr key={s.id}>
+                    <td>
+                      {s.image ? (
+                        <img
+                          src={s.image}
+                          alt={s.name}
+                          style={{ width: '40px', height: '40px', objectFit: 'contain' }}
+                        />
+                      ) : (
+                        <span style={{ color: 'var(--admin-text-muted)' }}>-</span>
+                      )}
+                    </td>
+                    <td className="fw-600">{s.name}</td>
+                    <td>
+                      <span
+                        className="admin-badge"
+                        style={{
+                          backgroundColor: s.color || '#333',
+                          color: '#fff',
+                        }}
+                      >
+                        {s.color || 'None'}
+                      </span>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className="admin-input"
+                        style={{ width: '70px', padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+                        defaultValue={s.order}
+                        onBlur={(e) => {
+                          const val = parseInt(e.target.value);
+                          if (val !== s.order) handleOrderChange(s.id, val);
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <div className="d-flex gap-2">
+                        <button
+                          onClick={() => handleToggleVisibility(s.id, s.isVisible)}
+                          className={`admin-btn admin-btn-sm admin-btn-icon ${
+                            s.isVisible ? 'admin-btn-success' : 'admin-btn-secondary'
+                          }`}
+                          title={s.isVisible ? 'Hide from homepage' : 'Show on homepage'}
+                        >
+                          {s.isVisible ? '👁️' : '👁️‍🗨️'}
+                        </button>
+                        <button
+                          className="admin-btn admin-btn-secondary admin-btn-sm admin-btn-icon"
+                          onClick={() => handleEdit(s)}
+                          title="Edit Skill"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          className="admin-btn admin-btn-danger admin-btn-sm admin-btn-icon"
+                          onClick={() => confirmDelete(s)}
+                          title="Delete Skill"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
       </div>
 
       <SkillModal
@@ -152,25 +170,42 @@ export const SkillsClient = ({ initialSkills }: { initialSkills: any[] }) => {
       />
 
       {showConfirm && selectedSkill && (
-        <div className="modal show d-block" style={{ backgroundColor: "rgba(0,0,0,0.5)" }} tabIndex={-1}>
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content text-dark border-0">
-              <div className="modal-header bg-danger text-white border-0">
-                <h5 className="modal-title fw-bold">Confirm Deletion</h5>
-                <button type="button" className="btn-close btn-close-white" onClick={() => setShowConfirm(false)}></button>
-              </div>
-              <div className="modal-body p-4 text-center">
-                <p className="fs-5">Are you completely sure you want to delete the tech skill <strong>"{selectedSkill.name}"</strong>?</p>
-                <p className="text-muted small">This action is permanent and cannot be undone.</p>
-              </div>
-              <div className="modal-footer border-0 d-flex justify-content-center">
-                <button type="button" className="btn btn-secondary px-4" onClick={() => setShowConfirm(false)}>Cancel</button>
-                <button type="button" className="btn btn-danger px-4" onClick={handleDelete}>Yes, Delete It</button>
-              </div>
+        <div className="admin-modal-overlay" onClick={() => setShowConfirm(false)}>
+          <div className="admin-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="admin-modal-header">
+              <h3 className="admin-modal-title">Delete Skill</h3>
+              <button className="admin-modal-close" onClick={() => setShowConfirm(false)}>
+                ✕
+              </button>
+            </div>
+            <div className="admin-modal-body">
+              <p style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+                Delete the skill
+              </p>
+              <p style={{ textAlign: 'center', fontWeight: 600, color: 'var(--admin-danger)' }}>
+                &quot;{selectedSkill.name}&quot;?
+              </p>
+              <p style={{ textAlign: 'center', color: 'var(--admin-text-muted)', fontSize: '0.85rem', marginTop: '1rem' }}>
+                This action is permanent and cannot be undone.
+              </p>
+            </div>
+            <div className="admin-modal-footer">
+              <button className="admin-btn admin-btn-secondary" onClick={() => setShowConfirm(false)}>
+                Cancel
+              </button>
+              <button className="admin-btn admin-btn-danger" onClick={handleDelete}>
+                Delete
+              </button>
             </div>
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        .fw-600 {
+          font-weight: 600;
+        }
+      `}</style>
     </>
   );
 };

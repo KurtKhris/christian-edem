@@ -36,6 +36,7 @@
     "react-floating-whatsapp": "^5.0.8",
     "react-google-recaptcha": "^3.1.0",
     "react-hot-toast": "^2.6.0",
+    "react-markdown": "^10.1.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.22.3",
     "react-scroll": "^1.8.9",
@@ -46,7 +47,11 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "npx ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "npx ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +73,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.5.2",
-    "dotenv-cli": "^11.0.0"
+    "dotenv-cli": "^11.0.0",
+    "ts-node": "^10.9.2"
   }
 }

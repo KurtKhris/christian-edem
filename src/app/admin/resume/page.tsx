@@ -1,55 +1,54 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { toast } from "react-hot-toast";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import AddIcon from "@mui/icons-material/Add";
-import SaveIcon from "@mui/icons-material/Save";
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import AddIcon from '@mui/icons-material/Add';
+import SaveIcon from '@mui/icons-material/Save';
 import {
   getEducation, createEducation, updateEducation, deleteEducation,
   toggleEducationVisibility, updateEducationOrder,
   getWorkExperience, createWorkExperience, updateWorkExperience, deleteWorkExperience,
   toggleWorkExperienceVisibility, updateWorkExperienceOrder,
-} from "../../actions/resume";
-import { useEffect } from "react";
+} from '../../actions/resume';
+import { useEffect } from 'react';
+import AdminHeader from '../components/AdminHeader';
 
-// ── Generic Modal ──────────────────────────────────────────────────────────
 function ConfirmModal({ name, onConfirm, onClose, loading }: any) {
   return (
-    <div className="modal show d-block" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content border-0 shadow-lg">
-          <div className="modal-header bg-danger text-white border-0">
-            <h5 className="modal-title fw-bold">Confirm Delete</h5>
-            <button className="btn-close btn-close-white" onClick={onClose} disabled={loading} />
-          </div>
-          <div className="modal-body text-center p-4">
-            <p className="fs-5 mb-1">Are you sure you want to delete</p>
-            <p className="fw-bold fs-4 text-danger">"{name}"?</p>
-            <p className="text-muted small">This cannot be undone.</p>
-          </div>
-          <div className="modal-footer border-0 justify-content-center gap-2">
-            <button className="btn btn-secondary px-4" onClick={onClose} disabled={loading}>Cancel</button>
-            <button className="btn btn-danger px-4" onClick={onConfirm} disabled={loading}>
-              {loading ? "Deleting..." : "Yes, Delete"}
-            </button>
-          </div>
+    <div className="admin-modal-overlay" onClick={onClose}>
+      <div className="admin-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="admin-modal-header">
+          <h3 className="admin-modal-title">Confirm Delete</h3>
+          <button className="admin-modal-close" onClick={onClose} disabled={loading}>✕</button>
+        </div>
+        <div className="admin-modal-body">
+          <p style={{ textAlign: 'center', marginBottom: '0.5rem' }}>Delete</p>
+          <p style={{ textAlign: 'center', fontWeight: 600, color: 'var(--admin-danger)' }}>&quot;{name}&quot;?</p>
+          <p style={{ textAlign: 'center', color: 'var(--admin-text-muted)', fontSize: '0.85rem' }}>
+            This action cannot be undone.
+          </p>
+        </div>
+        <div className="admin-modal-footer">
+          <button className="admin-btn admin-btn-secondary" onClick={onClose} disabled={loading}>Cancel</button>
+          <button className="admin-btn admin-btn-danger" onClick={onConfirm} disabled={loading}>
+            {loading ? 'Deleting...' : 'Delete'}
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-// ── Education Section ──────────────────────────────────────────────────────
 function EducationSection() {
   const [items, setItems] = useState<any[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
-  const [editData, setEditData] = useState({ title: "", institution: "", period: "" });
+  const [editData, setEditData] = useState({ title: '', institution: '', period: '' });
   const [showAdd, setShowAdd] = useState(false);
-  const [newData, setNewData] = useState({ title: "", institution: "", period: "" });
+  const [newData, setNewData] = useState({ title: '', institution: '', period: '' });
   const [deleteTarget, setDeleteTarget] = useState<any>(null);
   const [saving, setSaving] = useState(false);
 
@@ -59,103 +58,224 @@ function EducationSection() {
   const handleAdd = async (e: any) => {
     e.preventDefault(); setSaving(true);
     const fd = new FormData();
-    fd.append("title", newData.title); fd.append("institution", newData.institution); fd.append("period", newData.period);
+    fd.append('title', newData.title);
+    fd.append('institution', newData.institution);
+    fd.append('period', newData.period);
     await createEducation(fd);
-    toast.success("Added!"); setNewData({ title: "", institution: "", period: "" }); setShowAdd(false); setSaving(false); load();
+    toast.success('Added!');
+    setNewData({ title: '', institution: '', period: '' });
+    setShowAdd(false);
+    setSaving(false);
+    load();
   };
 
   const handleEdit = async (id: string) => {
     setSaving(true);
     const fd = new FormData();
-    fd.append("title", editData.title); fd.append("institution", editData.institution); fd.append("period", editData.period);
+    fd.append('title', editData.title);
+    fd.append('institution', editData.institution);
+    fd.append('period', editData.period);
     await updateEducation(id, fd);
-    toast.success("Updated!"); setEditId(null); setSaving(false); load();
+    toast.success('Updated!');
+    setEditId(null);
+    setSaving(false);
+    load();
   };
 
   const handleDelete = async () => {
     setSaving(true);
     await deleteEducation(deleteTarget.id);
-    toast.success("Deleted!"); setDeleteTarget(null); setSaving(false); load();
+    toast.success('Deleted!');
+    setDeleteTarget(null);
+    setSaving(false);
+    load();
   };
 
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="text-white mb-0">🎓 Academic Qualifications</h5>
-        <button className="btn btn-sm btn-success" onClick={() => setShowAdd(true)}><AddIcon fontSize="small" /> Add</button>
+        <h3 style={{ fontSize: '1rem', fontWeight: 600, margin: 0 }}>Academic Qualifications</h3>
+        <button className="admin-btn admin-btn-primary admin-btn-sm" onClick={() => setShowAdd(true)}>
+          + Add
+        </button>
       </div>
 
       {showAdd && (
-        <form onSubmit={handleAdd} className="card bg-dark border-secondary p-3 mb-3">
-          <div className="row g-2">
-            <div className="col-12">
-              <label className="form-label text-white small mb-1 fw-bold">Degree / Title</label>
-              <input className="form-control form-control-sm bg-dark text-white border-secondary" placeholder="e.g. B.Tech in IT" value={newData.title} onChange={e => setNewData({ ...newData, title: e.target.value })} required />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label text-white small mb-1 fw-bold">Institution</label>
-              <input className="form-control form-control-sm bg-dark text-white border-secondary" placeholder="e.g. Ho Technical University" value={newData.institution} onChange={e => setNewData({ ...newData, institution: e.target.value })} required />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label text-white small mb-1 fw-bold">Period</label>
-              <input className="form-control form-control-sm bg-dark text-white border-secondary" placeholder="e.g. 2018 - 2021" value={newData.period} onChange={e => setNewData({ ...newData, period: e.target.value })} required />
-            </div>
+        <div className="admin-card mb-3">
+          <div className="admin-card-body">
+            <form onSubmit={handleAdd}>
+              <div className="admin-form-group">
+                <label className="admin-label">Degree / Title</label>
+                <input
+                  className="admin-input"
+                  placeholder="e.g. B.Tech in IT"
+                  value={newData.title}
+                  onChange={(e) => setNewData({ ...newData, title: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="admin-form-group">
+                <label className="admin-label">Institution</label>
+                <input
+                  className="admin-input"
+                  placeholder="e.g. Ho Technical University"
+                  value={newData.institution}
+                  onChange={(e) => setNewData({ ...newData, institution: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="admin-form-group">
+                <label className="admin-label">Period</label>
+                <input
+                  className="admin-input"
+                  placeholder="e.g. 2018 - 2021"
+                  value={newData.period}
+                  onChange={(e) => setNewData({ ...newData, period: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="d-flex gap-2">
+                <button className="admin-btn admin-btn-primary" type="submit" disabled={saving}>
+                  {saving ? 'Saving...' : 'Save'}
+                </button>
+                <button className="admin-btn admin-btn-secondary" type="button" onClick={() => setShowAdd(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="mt-2 d-flex gap-2">
-            <button className="btn btn-sm btn-success" type="submit" disabled={saving}>{saving ? "Saving..." : "Save"}</button>
-            <button className="btn btn-sm btn-secondary" type="button" onClick={() => setShowAdd(false)}>Cancel</button>
-          </div>
-        </form>
+        </div>
       )}
 
-      <table className="table table-dark table-hover table-sm">
-        <thead><tr><th>#</th><th>Title</th><th>Institution</th><th>Period</th><th>Actions</th></tr></thead>
+      <table className="admin-table">
+        <thead>
+          <tr>
+            <th style={{ width: '60px' }}>#</th>
+            <th>Title</th>
+            <th>Institution</th>
+            <th>Period</th>
+            <th style={{ width: '120px' }}>Actions</th>
+          </tr>
+        </thead>
         <tbody>
-          {items.map((item, i) => editId === item.id ? (
-            <tr key={item.id}>
-              <td>{i + 1}</td>
-              <td><input className="form-control form-control-sm bg-dark text-white border-secondary" value={editData.title} onChange={e => setEditData({ ...editData, title: e.target.value })} /></td>
-              <td><input className="form-control form-control-sm bg-dark text-white border-secondary" value={editData.institution} onChange={e => setEditData({ ...editData, institution: e.target.value })} /></td>
-              <td><input className="form-control form-control-sm bg-dark text-white border-secondary" value={editData.period} onChange={e => setEditData({ ...editData, period: e.target.value })} /></td>
-              <td>
-                <button className="btn btn-sm btn-success me-1" onClick={() => handleEdit(item.id)} disabled={saving}><SaveIcon fontSize="small" /></button>
-                <button className="btn btn-sm btn-secondary" onClick={() => setEditId(null)}>✕</button>
+          {items.map((item, i) =>
+            editId === item.id ? (
+              <tr key={item.id}>
+                <td>{i + 1}</td>
+                <td>
+                  <input
+                    className="admin-input"
+                    value={editData.title}
+                    onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                  />
+                </td>
+                <td>
+                  <input
+                    className="admin-input"
+                    value={editData.institution}
+                    onChange={(e) => setEditData({ ...editData, institution: e.target.value })}
+                  />
+                </td>
+                <td>
+                  <input
+                    className="admin-input"
+                    value={editData.period}
+                    onChange={(e) => setEditData({ ...editData, period: e.target.value })}
+                  />
+                </td>
+                <td>
+                  <div className="d-flex gap-2">
+                    <button className="admin-btn admin-btn-success admin-btn-sm" onClick={() => handleEdit(item.id)} disabled={saving}>
+                      <SaveIcon fontSize="small" />
+                    </button>
+                    <button className="admin-btn admin-btn-secondary admin-btn-sm" onClick={() => setEditId(null)}>
+                      ✕
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              <tr key={item.id}>
+                <td>
+                  <input
+                    type="number"
+                    className="admin-input"
+                    style={{ width: '55px', padding: '0.4rem' }}
+                    defaultValue={item.order}
+                    onBlur={(e) => {
+                      const val = parseInt(e.target.value, 10) || 0;
+                      if (val !== item.order) {
+                        updateEducationOrder(item.id, val);
+                        load();
+                      }
+                    }}
+                  />
+                </td>
+                <td className="fw-600">{item.title}</td>
+                <td>{item.institution}</td>
+                <td>{item.period}</td>
+                <td>
+                  <div className="d-flex gap-2">
+                    <button
+                      className="admin-btn admin-btn-secondary admin-btn-sm"
+                      title="Edit"
+                      onClick={() => {
+                        setEditId(item.id);
+                        setEditData({ title: item.title, institution: item.institution, period: item.period });
+                      }}
+                    >
+                      <EditIcon fontSize="small" />
+                    </button>
+                    <button
+                      className={`admin-btn admin-btn-sm ${item.isVisible ? 'admin-btn-success' : 'admin-btn-secondary'}`}
+                      title="Toggle visibility"
+                      onClick={async () => {
+                        await toggleEducationVisibility(item.id, item.isVisible);
+                        load();
+                      }}
+                    >
+                      {item.isVisible ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
+                    </button>
+                    <button
+                      className="admin-btn admin-btn-danger admin-btn-sm"
+                      title="Delete"
+                      onClick={() => setDeleteTarget(item)}
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            )
+          )}
+          {items.length === 0 && (
+            <tr>
+              <td colSpan={5} style={{ textAlign: 'center', color: 'var(--admin-text-muted)' }}>
+                No entries yet
               </td>
             </tr>
-          ) : (
-            <tr key={item.id}>
-              <td>
-                <input type="number" className="form-control form-control-sm bg-dark text-white border-secondary" style={{ width: 55 }} value={item.order}
-                  onChange={async (e) => { await updateEducationOrder(item.id, parseInt(e.target.value, 10) || 0); load(); }} />
-              </td>
-              <td className="text-white">{item.title}</td>
-              <td className="text-white">{item.institution}</td>
-              <td className="text-white">{item.period}</td>
-              <td>
-                <button className="btn btn-sm btn-outline-primary me-1" title="Edit" onClick={() => { setEditId(item.id); setEditData({ title: item.title, institution: item.institution, period: item.period }); }}><EditIcon fontSize="small" /></button>
-                <button className="btn btn-sm btn-outline-warning me-1" title="Toggle visibility" onClick={async () => { await toggleEducationVisibility(item.id, item.isVisible); load(); }}>
-                  {item.isVisible ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
-                </button>
-                <button className="btn btn-sm btn-outline-danger" title="Delete" onClick={() => setDeleteTarget(item)}><DeleteIcon fontSize="small" /></button>
-              </td>
-            </tr>
-          ))}
-          {items.length === 0 && <tr><td colSpan={5} className="text-center text-muted">No entries yet</td></tr>}
+          )}
         </tbody>
       </table>
 
-      {deleteTarget && <ConfirmModal name={deleteTarget.title} onConfirm={handleDelete} onClose={() => setDeleteTarget(null)} loading={saving} />}
+      {deleteTarget && (
+        <ConfirmModal
+          name={deleteTarget.title}
+          onConfirm={handleDelete}
+          onClose={() => setDeleteTarget(null)}
+          loading={saving}
+        />
+      )}
     </div>
   );
 }
 
-// ── Work Experience Section ────────────────────────────────────────────────
 function WorkSection() {
   const [items, setItems] = useState<any[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
-  const [editData, setEditData] = useState({ title: "", company: "", period: "" });
+  const [editData, setEditData] = useState({ title: '', company: '', period: '' });
   const [showAdd, setShowAdd] = useState(false);
-  const [newData, setNewData] = useState({ title: "", company: "", period: "" });
+  const [newData, setNewData] = useState({ title: '', company: '', period: '' });
   const [deleteTarget, setDeleteTarget] = useState<any>(null);
   const [saving, setSaving] = useState(false);
 
@@ -165,107 +285,239 @@ function WorkSection() {
   const handleAdd = async (e: any) => {
     e.preventDefault(); setSaving(true);
     const fd = new FormData();
-    fd.append("title", newData.title); fd.append("company", newData.company); fd.append("period", newData.period);
+    fd.append('title', newData.title);
+    fd.append('company', newData.company);
+    fd.append('period', newData.period);
     await createWorkExperience(fd);
-    toast.success("Added!"); setNewData({ title: "", company: "", period: "" }); setShowAdd(false); setSaving(false); load();
+    toast.success('Added!');
+    setNewData({ title: '', company: '', period: '' });
+    setShowAdd(false);
+    setSaving(false);
+    load();
   };
 
   const handleEdit = async (id: string) => {
     setSaving(true);
     const fd = new FormData();
-    fd.append("title", editData.title); fd.append("company", editData.company); fd.append("period", editData.period);
+    fd.append('title', editData.title);
+    fd.append('company', editData.company);
+    fd.append('period', editData.period);
     await updateWorkExperience(id, fd);
-    toast.success("Updated!"); setEditId(null); setSaving(false); load();
+    toast.success('Updated!');
+    setEditId(null);
+    setSaving(false);
+    load();
   };
 
   const handleDelete = async () => {
     setSaving(true);
     await deleteWorkExperience(deleteTarget.id);
-    toast.success("Deleted!"); setDeleteTarget(null); setSaving(false); load();
+    toast.success('Deleted!');
+    setDeleteTarget(null);
+    setSaving(false);
+    load();
   };
 
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="text-white mb-0">💼 Work Experience</h5>
-        <button className="btn btn-sm btn-success" onClick={() => setShowAdd(true)}><AddIcon fontSize="small" /> Add</button>
+        <h3 style={{ fontSize: '1rem', fontWeight: 600, margin: 0 }}>Work Experience</h3>
+        <button className="admin-btn admin-btn-primary admin-btn-sm" onClick={() => setShowAdd(true)}>
+          + Add
+        </button>
       </div>
 
       {showAdd && (
-        <form onSubmit={handleAdd} className="card bg-dark border-secondary p-3 mb-3">
-          <div className="row g-2">
-            <div className="col-12">
-              <label className="form-label text-white small mb-1 fw-bold">Job Title</label>
-              <input className="form-control form-control-sm bg-dark text-white border-secondary" placeholder="e.g. Frontend Engineer" value={newData.title} onChange={e => setNewData({ ...newData, title: e.target.value })} required />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label text-white small mb-1 fw-bold">Company</label>
-              <input className="form-control form-control-sm bg-dark text-white border-secondary" placeholder="e.g. Techieszon" value={newData.company} onChange={e => setNewData({ ...newData, company: e.target.value })} required />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label text-white small mb-1 fw-bold">Period</label>
-              <input className="form-control form-control-sm bg-dark text-white border-secondary" placeholder="e.g. 2021 - Present" value={newData.period} onChange={e => setNewData({ ...newData, period: e.target.value })} required />
-            </div>
+        <div className="admin-card mb-3">
+          <div className="admin-card-body">
+            <form onSubmit={handleAdd}>
+              <div className="admin-form-group">
+                <label className="admin-label">Job Title</label>
+                <input
+                  className="admin-input"
+                  placeholder="e.g. Frontend Engineer"
+                  value={newData.title}
+                  onChange={(e) => setNewData({ ...newData, title: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="admin-form-group">
+                <label className="admin-label">Company</label>
+                <input
+                  className="admin-input"
+                  placeholder="e.g. Techieszon"
+                  value={newData.company}
+                  onChange={(e) => setNewData({ ...newData, company: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="admin-form-group">
+                <label className="admin-label">Period</label>
+                <input
+                  className="admin-input"
+                  placeholder="e.g. 2021 - Present"
+                  value={newData.period}
+                  onChange={(e) => setNewData({ ...newData, period: e.target.value })}
+                  required
+                />
+              </div>
+              <div className="d-flex gap-2">
+                <button className="admin-btn admin-btn-primary" type="submit" disabled={saving}>
+                  {saving ? 'Saving...' : 'Save'}
+                </button>
+                <button className="admin-btn admin-btn-secondary" type="button" onClick={() => setShowAdd(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="mt-2 d-flex gap-2">
-            <button className="btn btn-sm btn-success" type="submit" disabled={saving}>{saving ? "Saving..." : "Save"}</button>
-            <button className="btn btn-sm btn-secondary" type="button" onClick={() => setShowAdd(false)}>Cancel</button>
-          </div>
-        </form>
+        </div>
       )}
 
-      <table className="table table-dark table-hover table-sm">
-        <thead><tr><th>#</th><th>Title</th><th>Company</th><th>Period</th><th>Actions</th></tr></thead>
+      <table className="admin-table">
+        <thead>
+          <tr>
+            <th style={{ width: '60px' }}>#</th>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Period</th>
+            <th style={{ width: '120px' }}>Actions</th>
+          </tr>
+        </thead>
         <tbody>
-          {items.map((item, i) => editId === item.id ? (
-            <tr key={item.id}>
-              <td>{i + 1}</td>
-              <td><input className="form-control form-control-sm bg-dark text-white border-secondary" value={editData.title} onChange={e => setEditData({ ...editData, title: e.target.value })} /></td>
-              <td><input className="form-control form-control-sm bg-dark text-white border-secondary" value={editData.company} onChange={e => setEditData({ ...editData, company: e.target.value })} /></td>
-              <td><input className="form-control form-control-sm bg-dark text-white border-secondary" value={editData.period} onChange={e => setEditData({ ...editData, period: e.target.value })} /></td>
-              <td>
-                <button className="btn btn-sm btn-success me-1" onClick={() => handleEdit(item.id)} disabled={saving}><SaveIcon fontSize="small" /></button>
-                <button className="btn btn-sm btn-secondary" onClick={() => setEditId(null)}>✕</button>
+          {items.map((item, i) =>
+            editId === item.id ? (
+              <tr key={item.id}>
+                <td>{i + 1}</td>
+                <td>
+                  <input
+                    className="admin-input"
+                    value={editData.title}
+                    onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                  />
+                </td>
+                <td>
+                  <input
+                    className="admin-input"
+                    value={editData.company}
+                    onChange={(e) => setEditData({ ...editData, company: e.target.value })}
+                  />
+                </td>
+                <td>
+                  <input
+                    className="admin-input"
+                    value={editData.period}
+                    onChange={(e) => setEditData({ ...editData, period: e.target.value })}
+                  />
+                </td>
+                <td>
+                  <div className="d-flex gap-2">
+                    <button className="admin-btn admin-btn-success admin-btn-sm" onClick={() => handleEdit(item.id)} disabled={saving}>
+                      <SaveIcon fontSize="small" />
+                    </button>
+                    <button className="admin-btn admin-btn-secondary admin-btn-sm" onClick={() => setEditId(null)}>
+                      ✕
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              <tr key={item.id}>
+                <td>
+                  <input
+                    type="number"
+                    className="admin-input"
+                    style={{ width: '55px', padding: '0.4rem' }}
+                    defaultValue={item.order}
+                    onBlur={(e) => {
+                      const val = parseInt(e.target.value, 10) || 0;
+                      if (val !== item.order) {
+                        updateWorkExperienceOrder(item.id, val);
+                        load();
+                      }
+                    }}
+                  />
+                </td>
+                <td className="fw-600">{item.title}</td>
+                <td>{item.company}</td>
+                <td>{item.period}</td>
+                <td>
+                  <div className="d-flex gap-2">
+                    <button
+                      className="admin-btn admin-btn-secondary admin-btn-sm"
+                      title="Edit"
+                      onClick={() => {
+                        setEditId(item.id);
+                        setEditData({ title: item.title, company: item.company, period: item.period });
+                      }}
+                    >
+                      <EditIcon fontSize="small" />
+                    </button>
+                    <button
+                      className={`admin-btn admin-btn-sm ${item.isVisible ? 'admin-btn-success' : 'admin-btn-secondary'}`}
+                      title="Toggle visibility"
+                      onClick={async () => {
+                        await toggleWorkExperienceVisibility(item.id, item.isVisible);
+                        load();
+                      }}
+                    >
+                      {item.isVisible ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
+                    </button>
+                    <button
+                      className="admin-btn admin-btn-danger admin-btn-sm"
+                      title="Delete"
+                      onClick={() => setDeleteTarget(item)}
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            )
+          )}
+          {items.length === 0 && (
+            <tr>
+              <td colSpan={5} style={{ textAlign: 'center', color: 'var(--admin-text-muted)' }}>
+                No entries yet
               </td>
             </tr>
-          ) : (
-            <tr key={item.id}>
-              <td>
-                <input type="number" className="form-control form-control-sm bg-dark text-white border-secondary" style={{ width: 55 }} value={item.order}
-                  onChange={async (e) => { await updateWorkExperienceOrder(item.id, parseInt(e.target.value, 10) || 0); load(); }} />
-              </td>
-              <td className="text-white">{item.title}</td>
-              <td className="text-white">{item.company}</td>
-              <td className="text-white">{item.period}</td>
-              <td>
-                <button className="btn btn-sm btn-outline-primary me-1" title="Edit" onClick={() => { setEditId(item.id); setEditData({ title: item.title, company: item.company, period: item.period }); }}><EditIcon fontSize="small" /></button>
-                <button className="btn btn-sm btn-outline-warning me-1" title="Toggle visibility" onClick={async () => { await toggleWorkExperienceVisibility(item.id, item.isVisible); load(); }}>
-                  {item.isVisible ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
-                </button>
-                <button className="btn btn-sm btn-outline-danger" title="Delete" onClick={() => setDeleteTarget(item)}><DeleteIcon fontSize="small" /></button>
-              </td>
-            </tr>
-          ))}
-          {items.length === 0 && <tr><td colSpan={5} className="text-center text-muted">No entries yet</td></tr>}
+          )}
         </tbody>
       </table>
 
-      {deleteTarget && <ConfirmModal name={deleteTarget.title} onConfirm={handleDelete} onClose={() => setDeleteTarget(null)} loading={saving} />}
+      {deleteTarget && (
+        <ConfirmModal
+          name={deleteTarget.title}
+          onConfirm={handleDelete}
+          onClose={() => setDeleteTarget(null)}
+          loading={saving}
+        />
+      )}
     </div>
   );
 }
 
-// ── Page ───────────────────────────────────────────────────────────────────
 export default function ResumeClient() {
   return (
-    <div className="container-fluid">
-      <h2 className="text-white mb-4">Resume Management</h2>
-      <div className="card bg-dark border-secondary p-4 mb-4">
-        <EducationSection />
+    <div className="admin-content">
+      <AdminHeader title="Resume" userName="Christian Edem" />
+
+      <div className="admin-card mb-4">
+        <div className="admin-card-body">
+          <EducationSection />
+        </div>
       </div>
-      <div className="card bg-dark border-secondary p-4">
-        <WorkSection />
+      <div className="admin-card">
+        <div className="admin-card-body">
+          <WorkSection />
+        </div>
       </div>
+
+      <style jsx>{`
+        .fw-600 {
+          font-weight: 600;
+        }
+      `}</style>
     </div>
   );
 }
