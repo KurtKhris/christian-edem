@@ -1,6 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
+import BlogContent from "./BlogContent";
 import NavBars from "../../../components/NavBars";
 import { Footer } from "../../../components/footer";
 import { getPostBySlug } from "../../actions/blog";
@@ -47,11 +47,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             </header>
 
             <article className="post-content text-white">
-              <div className="markdown-body">
-                <ReactMarkdown>
-                  {post.content}
-                </ReactMarkdown>
-              </div>
+              <BlogContent content={post.content} />
             </article>
 
             <div className="mt-5 pt-5 border-top border-secondary">
