@@ -223,22 +223,33 @@ export async function sendContactEmail(data: { name: string; email: string; phon
     `,
   };
 
+  console.log("[contact] attempting to send email via", process.env.EMAIL_HOST, "as", process.env.EMAIL_USER);
+
   try {
     // 1. Send notification to Christian
+    console.log("[contact] sending notification email...");
     await transporter.sendMail(notificationMail);
+    console.log("[contact] notification email sent");
 
     // 2. Send acknowledgment to the user
+    console.log("[contact] sending acknowledgment email...");
     await transporter.sendMail(acknowledgmentMail);
-    
+    console.log("[contact] acknowledgment email sent");
+
     // 3. Persist to DB
+    console.log("[contact] saving message to DB...");
     await prisma.contactMessage.create({
       data: { name, email, phone, message },
     });
+    console.log("[contact] message saved to DB");
 
     revalidatePath("/admin");
     return { success: true };
   } catch (error: any) {
-    console.error("[contact] email/db error:", error?.message ?? error);
+    console.error("[contact] FAILED at step above");
+    console.error("[contact] error code:", error?.code);
+    console.error("[contact] error message:", error?.message);
+    console.error("[contact] full error:", JSON.stringify(error, null, 2));
     return { success: false, error: error?.message ?? "Email could not be sent" };
   }
 }
