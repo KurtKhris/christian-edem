@@ -540,25 +540,29 @@ textarea.f-input { resize:vertical; min-height:130px; width:100%; display:block;
 .scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .scroll-top-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(255,95,109,0.6); }
 
-/* ── TERMINAL EASTER EGG ── */
-.terminal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(10px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1rem; animation: fadeInTerminal 0.2s ease-out; }
-.terminal-window { width: 100%; max-width: 700px; background: #1a1a2e; border-radius: 12px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08), 0 0 40px rgba(99,102,241,0.1); display: flex; flex-direction: column; height: 450px; font-family: 'Courier New', Courier, monospace; }
-.terminal-header { background: #232340; padding: 0.6rem 1rem; display: flex; align-items: center; position: relative; border-bottom: 1px solid rgba(255,255,255,0.06); }
+/* ── TERMINAL ── */
+.terminal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.72); backdrop-filter: blur(10px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1rem; animation: fadeInTerminal 0.22s ease-out; }
+.terminal-window { width: 100%; max-width: 740px; background: #0f0f1e; border-radius: 14px; overflow: hidden; box-shadow: 0 28px 72px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.07), 0 0 50px rgba(99,102,241,0.12); display: flex; flex-direction: column; height: 520px; font-family: 'Courier New', Courier, monospace; }
+.terminal-header { background: #1a1a30; padding: 0.65rem 1rem; display: flex; align-items: center; position: relative; border-bottom: 1px solid rgba(255,255,255,0.06); cursor: grab; user-select: none; }
+.terminal-header:active { cursor: grabbing; }
 .terminal-buttons { display: flex; gap: 8px; }
-.tb-close, .tb-min, .tb-max { width: 12px; height: 12px; border-radius: 50%; }
+.tb-close, .tb-min, .tb-max { width: 13px; height: 13px; border-radius: 50%; cursor: pointer; transition: filter 0.15s; }
 .tb-close { background: #ff5f56; } .tb-min { background: #ffbd2e; } .tb-max { background: #27c93f; }
-.terminal-title { flex: 1; text-align: center; color: #a1a1a1; font-size: 0.85rem; font-family: 'Inter', sans-serif; margin-right: 2rem; }
-.terminal-close-btn { background: none; border: none; color: #a1a1a1; cursor: pointer; position: absolute; right: 0.5rem; padding: 4px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
-.terminal-close-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.terminal-body { flex: 1; padding: 1rem; overflow-y: auto; color: #fff; font-size: 0.95rem; line-height: 1.5; background: #0d0d1a; cursor: text; }
-.terminal-cmd-line { margin-top: 0.5rem; }
-.terminal-prompt { color: #50fa7b; font-weight: bold; margin-right: 0.5rem; }
-.terminal-output { color: #f8f8f2; margin-bottom: 0.5rem; }
-.terminal-input-line { display: flex; align-items: center; margin-top: 0.5rem; }
-.terminal-input { background: none; border: none; color: #f8f8f2; flex: 1; font-family: 'Courier New', Courier, monospace; font-size: 0.95rem; outline: none; }
-@keyframes fadeInTerminal { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
-.terminal-toggle-btn { position: fixed; bottom: 2rem; left: 2rem; width: 50px; height: 50px; border-radius: 50%; background: rgba(20,20,40,0.85); border: 1px solid rgba(255,255,255,0.1); color: #50fa7b; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.5), 0 0 0 1px rgba(80,250,123,0.1); cursor: pointer; z-index: 998; transition: all 0.3s ease; backdrop-filter: blur(8px); }
-.terminal-toggle-btn:hover { background: rgba(40,40,70,0.9); transform: translateY(-3px); color: #fff; border-color: #50fa7b; box-shadow: 0 0 20px rgba(80,250,123,0.35); }
+.tb-close:hover { filter: brightness(1.3); } .tb-min:hover { filter: brightness(1.3); } .tb-max:hover { filter: brightness(1.3); }
+.terminal-title { flex: 1; text-align: center; color: #7070a0; font-size: 0.82rem; font-family: 'Inter', sans-serif; letter-spacing: 0.02em; }
+.terminal-close-btn { background: none; border: none; color: #555; cursor: pointer; position: absolute; right: 0.6rem; padding: 4px; display: flex; align-items: center; justify-content: center; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+.terminal-close-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.terminal-body { flex: 1; padding: 1.1rem 1.2rem; overflow-y: auto; color: #f8f8f2; font-size: 0.9rem; line-height: 1.55; background: #080814; cursor: text; }
+.terminal-body::-webkit-scrollbar { width: 5px; } .terminal-body::-webkit-scrollbar-track { background: transparent; } .terminal-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+.terminal-entry { margin-bottom: 0.15rem; }
+.terminal-cmd-line { margin-top: 0.6rem; color: #f8f8f2; }
+.terminal-prompt { color: #50fa7b; font-weight: 700; margin-right: 0.5rem; }
+.terminal-output { color: #d0d0e8; margin-top: 0.2rem; margin-bottom: 0.3rem; line-height: 1.6; }
+.terminal-input-line { display: flex; align-items: center; margin-top: 0.6rem; }
+.terminal-input { background: none; border: none; color: #f8f8f2; flex: 1; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; outline: none; caret-color: #50fa7b; }
+@keyframes fadeInTerminal { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+.terminal-toggle-btn { position: fixed; bottom: 2rem; left: 2rem; width: 50px; height: 50px; border-radius: 50%; background: rgba(15,15,35,0.9); border: 1px solid rgba(80,250,123,0.2); color: #50fa7b; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 18px rgba(0,0,0,0.5), 0 0 14px rgba(80,250,123,0.08); cursor: pointer; z-index: 998; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+.terminal-toggle-btn:hover { transform: translateY(-3px); border-color: #50fa7b; box-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 0 24px rgba(80,250,123,0.3); }
 
 /* ── ABOUT PAGE TEXT ── */
 .about-bio p { color:var(--text-secondary) !important; }
