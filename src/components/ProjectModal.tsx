@@ -71,8 +71,11 @@ export default function ProjectModal({ project, isOpen, onClose, onSuccess }: Pr
             </div>
             
             <div className="mb-4">
-              <label className="form-label fw-bold">Cover Image {isEditing && <span className="text-muted fw-normal">(Leave empty to retain existing)</span>}</label>
-              <input type="file" name="image" className="form-control mb-2" accept="image/*" required={!isEditing} />
+              <label className="form-label fw-bold">Cover Image <span className="text-muted fw-normal">(Optional)</span></label>
+              <input type="file" name="image" className="form-control mb-2" accept="image/*" />
+              <span className="d-block text-muted small">
+                If left empty and a Live URL is set above, a preview screenshot of the site will be generated automatically.
+              </span>
               {isEditing && project?.image && (
                 <div className="mt-2 text-center rounded bg-light p-2 border">
                   <span className="d-block text-muted small mb-1">Current Image</span>

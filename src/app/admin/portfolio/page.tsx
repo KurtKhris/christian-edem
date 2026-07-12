@@ -6,6 +6,7 @@ import ProjectModal from '../../../components/ProjectModal';
 import ConfirmDeleteModal from '../../../components/ConfirmDeleteModal';
 import { toast } from 'react-hot-toast';
 import AdminHeader from '../components/AdminHeader';
+import { getProjectPreviewImage } from '../../../lib/screenshot';
 
 export default function AdminPortfolio() {
   const [projects, setProjects] = useState<any[]>([]);
@@ -123,9 +124,9 @@ export default function AdminPortfolio() {
                 {projects.map((proj) => (
                   <tr key={proj.id}>
                     <td>
-                      {proj.image ? (
+                      {getProjectPreviewImage(proj) ? (
                         <img
-                          src={proj.image}
+                          src={getProjectPreviewImage(proj)}
                           alt={proj.name}
                           style={{
                             width: 60,

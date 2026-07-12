@@ -18,6 +18,7 @@ import { toast } from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FloatingWhatsApp } from 'react-floating-whatsapp';
 import NavBars from "../components/NavBars";
+import { getProjectPreviewImage } from "../lib/screenshot";
 import TechCard from "../components/TechCard";
 import { sendContactEmail } from "../app/actions/email";
 import { Backdrop, CircularProgress } from "@mui/material";
@@ -276,7 +277,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                 <div className="col-sm-6 col-lg-4" key={project.id}>
                   <div className="port-card">
                     <div className="port-img-wrap">
-                      <img src={project.image} alt={project.name} className="port-img" />
+                      <img src={getProjectPreviewImage(project)} alt={project.name} className="port-img" />
                       <div className="port-img-overlay">
                         {project.url && (
                           <a href={project.url} target="_blank" rel="noreferrer" className="port-overlay-btn" title="Visit Site">
