@@ -13,6 +13,7 @@ interface Props {
 
 export default function ProjectModal({ project, isOpen, onClose, onSuccess }: Props) {
   const [loading, setLoading] = useState(false);
+  const [removeImage, setRemoveImage] = useState(false);
 
   if (!isOpen) return null;
 
@@ -72,16 +73,36 @@ export default function ProjectModal({ project, isOpen, onClose, onSuccess }: Pr
             
             <div className="mb-4">
               <label className="form-label fw-bold">Cover Image <span className="text-muted fw-normal">(Optional)</span></label>
-              <input type="file" name="image" className="form-control mb-2" accept="image/*" />
+              <input type="file" name="image" className="form-control mb-2" accept="image/*" disabled={removeImage} />
               <span className="d-block text-muted small">
                 If left empty and a Live URL is set above, a preview screenshot of the site will be generated automatically.
               </span>
-              {isEditing && project?.image && (
+              {isEditing && project?.image && !removeImage && (
                 <div className="mt-2 text-center rounded bg-light p-2 border">
                   <span className="d-block text-muted small mb-1">Current Image</span>
-                  <img src={project.image} alt="Current" className="img-thumbnail" style={{ height: 120, objectFit: 'contain' }} />
+                  <img src={project.image} alt="Current" className="img-thumbnail d-block mx-auto" style={{ height: 120, objectFit: 'contain' }} />
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-danger mt-2"
+                    onClick={() => setRemoveImage(true)}
+                  >
+                    Remove Image
+                  </button>
                 </div>
               )}
+              {isEditing && removeImage && (
+                <div className="mt-2 d-flex align-items-center justify-content-between rounded bg-light p-2 border">
+                  <span className="text-muted small">Image will be removed on save.</span>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-secondary"
+                    onClick={() => setRemoveImage(false)}
+                  >
+                    Undo
+                  </button>
+                </div>
+              )}
+              <input type="hidden" name="removeImage" value={removeImage ? "true" : "false"} />
             </div>
           </div>
           <div className="modal-footer">

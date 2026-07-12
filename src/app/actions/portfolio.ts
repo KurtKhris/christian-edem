@@ -66,6 +66,7 @@ export async function updateProject(id: string, formData: FormData) {
   const order = parseInt(formData.get("order") as string) || 0;
   const orderField = formData.get("order");
   const isVisibleField = formData.get("isVisible");
+  const removeImage = formData.get("removeImage") === "true";
 
   const dataToUpdate: any = {
     name,
@@ -85,6 +86,8 @@ export async function updateProject(id: string, formData: FormData) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
     dataToUpdate.image = await uploadToCloudinary(buffer);
+  } else if (removeImage) {
+    dataToUpdate.image = "";
   }
 
   const project = await prisma.project.update({
