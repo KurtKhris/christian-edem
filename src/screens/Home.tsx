@@ -26,7 +26,7 @@ import TerminalOverlay from "../components/TerminalOverlay";
 import { trackCVDownload } from "../app/actions/analytics";
 import TestimonialSlider from "../components/TestimonialSlider";
 
-const ROLES = ["Frontend Engineer", "React Developer", "Mobile App Developer"];
+const ROLES = ["Full Stack Engineer", "React Developer", "Mobile App Developer"];
 const projectsPerPage = 9;
 
 export const Home = ({ initialProjects = [], initialSkills = [], initialEducation = [], initialWork = [], testimonials = [] }: { initialProjects?: any[], initialSkills?: any[], initialEducation?: any[], initialWork?: any[], testimonials?: any[] }) => {
@@ -196,9 +196,8 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
               <span className="section-label">Get to know me</span>
               <h2 className="section-heading">About <span className="gradient-text">Me</span></h2>
               <div className="about-bio">
-                <p>I'm Christian Edem Kpegah, a Software Engineer and Technical Lead with 4+ years of experience delivering full-stack web and mobile applications across fintech, e-commerce, healthcare, banking, and tourism sectors in Ghana and beyond. I currently lead platform development at Gilkup Technologies while maintaining an active hands-on engineering role.</p>
-                <p>My core expertise spans React, React Native, Next.js, and TypeScript, with deep experience integrating payment gateways, real-time systems, and third-party APIs. I've taken products from architecture through deployment — including published apps on the Google Play Store and production systems serving real users.</p>
-                <p>Beyond building, I'm passionate about growing the next generation of developers through mentorship, structured training, and team leadership — bridging technical execution with strategic business goals.</p>
+                <p>Full Stack JavaScript Engineer and Technical Lead with 5+ years building production web and mobile applications across fintech, e-commerce, healthcare, banking, and tourism. Specialised in the JavaScript/TypeScript ecosystem, end-to-end React, React Native, and Next.js on the front, Node.js and serverless APIs on the back, with a track record of owning the full product lifecycle from architecture through deployment and support, including apps published to the Google Play Store and systems serving real users.</p>
+                <p>Experienced in leading platform development and engineering teams while remaining hands-on in code, with a track record of delivering across fintech, e-commerce, healthcare, and beyond. Experienced in integrating payment gateways (Paystack), real-time systems (Pusher), authentication (NextAuth), and relational databases (PostgreSQL) via modern ORMs (Drizzle, Prisma). Focused on shipping scalable, user-centred products and mentoring the next generation of developers.</p>
               </div>
 
               <div className="row mt-4 g-4">
@@ -222,19 +221,13 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                 <div className="col-md-6">
                   <h5 className="section-label" style={{ marginBottom: '1rem' }}>Work Experience</h5>
                   <div className="timeline">
-                    {initialWork.length > 0 ? initialWork.map((w: any) => (
+                    {initialWork.map((w: any) => (
                       <div key={w.id} className="tl-item">
                         <p className="tl-title">{w.title}</p>
                         <p className="tl-org">{w.company}</p>
                         <p className="tl-period">{w.period}</p>
                       </div>
-                    )) : (
-                      <>
-                        <div className="tl-item"><p className="tl-title">Frontend Engineer / UI/UX</p><p className="tl-org">Techieszon</p><p className="tl-period">2021 – Present</p></div>
-                        <div className="tl-item"><p className="tl-title">Web / UI Developer</p><p className="tl-org">MyGhanaOnline</p><p className="tl-period">2021 – 2023</p></div>
-                        <div className="tl-item"><p className="tl-title">Junior Frontend Engineer</p><p className="tl-org">Stanbic Bank Ghana</p><p className="tl-period">2020 – 2021</p></div>
-                      </>
-                    )}
+                    ))}
                   </div>
                 </div>
               </div>
