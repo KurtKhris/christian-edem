@@ -23,6 +23,7 @@ export async function createProject(formData: FormData) {
   const name = formData.get("name") as string;
   const description = formData.get("description") as string;
   const url = formData.get("url") as string;
+  const category = (formData.get("category") as string) || "web";
   const file = formData.get("image") as File;
   const isVisible = formData.get("isVisible") ? formData.get("isVisible") === "on" : true;
 
@@ -47,6 +48,7 @@ export async function createProject(formData: FormData) {
       description: description || null,
       url: url || null,
       image: imageUrl || "",
+      category,
       order,
       isVisible,
     }
@@ -62,6 +64,7 @@ export async function updateProject(id: string, formData: FormData) {
   const name = formData.get("name") as string;
   const description = formData.get("description") as string;
   const url = formData.get("url") as string;
+  const category = (formData.get("category") as string) || "web";
   const file = formData.get("image") as File;
   const order = parseInt(formData.get("order") as string) || 0;
   const orderField = formData.get("order");
@@ -72,6 +75,7 @@ export async function updateProject(id: string, formData: FormData) {
     name,
     description: description || null,
     url: url || null,
+    category,
   };
 
   if (orderField !== null) {

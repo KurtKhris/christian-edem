@@ -61,6 +61,7 @@ model Project {
   image       String?
   url         String?
   repoUrl     String?
+  category    String   @default("web") // "web" or "mobile"
   techStack   String?  // Could be JSON or comma-separated
   order       Int      @default(0) // Default order is lowest priority
   isVisible   Boolean  @default(true)

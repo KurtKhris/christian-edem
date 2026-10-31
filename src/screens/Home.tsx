@@ -77,8 +77,10 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
     return () => observer.disconnect();
   }, []);
 
-  const currentProjects = initialProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
-  const totalPages = Math.ceil(initialProjects.length / projectsPerPage);
+  const webProjects = initialProjects.filter((p: any) => p.category !== 'mobile');
+  const mobileProjects = initialProjects.filter((p: any) => p.category === 'mobile');
+  const currentProjects = webProjects.slice((currentPage - 1) * projectsPerPage, currentPage * projectsPerPage);
+  const totalPages = Math.ceil(webProjects.length / projectsPerPage);
 
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -329,6 +331,62 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
           )}
         </div>
       </section>
+
+      {mobileProjects.length > 0 && (
+        <>
+          <div className="section-sep"></div>
+
+          {/* ── MOBILE APPS ── */}
+          <section className="portfolio-section" id="mobile-apps">
+            <div className="section-wrap">
+              <div className="text-center mb-5 animate-on-scroll">
+                <span className="section-label">On the Play Store</span>
+                <h2 className="section-heading">Mobile <span className="gradient-text">Apps</span></h2>
+                <p style={{ color: 'var(--text-secondary)', maxWidth: 520, margin: '0 auto' }}>
+                  Android apps I've built and published, available to download now.
+                </p>
+              </div>
+              <div className="row g-4">
+                {mobileProjects.map((project: any) => (
+                  <div className="col-sm-6 col-lg-4" key={project.id}>
+                    <div className="port-card">
+                      <div className="port-img-wrap">
+                        <img src={getProjectPreviewImage(project)} alt={project.name} className="port-img" />
+                        <div className="port-img-overlay">
+                          {project.url && (
+                            <a href={project.url} target="_blank" rel="noreferrer" className="port-overlay-btn" title="View on Play Store">
+                              <OpenInNewIcon fontSize="small" />
+                            </a>
+                          )}
+                          {project.repoUrl && (
+                            <a href={project.repoUrl} target="_blank" rel="noreferrer" className="port-overlay-btn" title="View Code">
+                              <CodeIcon fontSize="small" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      <div className="port-body">
+                        <p className="port-title">{project.name}</p>
+                        {project.description && <p className="port-desc">{project.description}</p>}
+                        {project.techStack && project.techStack.length > 0 && (
+                          <div className="port-tags">
+                            {(Array.isArray(project.techStack) ? project.techStack : project.techStack.split(',')).slice(0, 4).map((tag: string, ti: number) => (
+                              <span key={ti} className="port-tag">{tag.trim()}</span>
+                            ))}
+                          </div>
+                        )}
+                        {project.url && (
+                          <a href={project.url} target="_blank" rel="noreferrer" className="btn-visit">Get it on Play Store</a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       <div className="section-sep"></div>
 

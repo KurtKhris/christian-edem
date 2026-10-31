@@ -155,6 +155,9 @@ export default function AdminPortfolio() {
                     </td>
                     <td>
                       <span className="fw-600">{proj.name}</span>
+                      {proj.category === 'mobile' && (
+                        <span className="admin-badge admin-badge-info ms-2">📱 Mobile</span>
+                      )}
                       {proj.isVisible ? (
                         <span className="admin-badge admin-badge-success ms-2">Visible</span>
                       ) : (

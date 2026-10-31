@@ -62,10 +62,20 @@ export default function ProjectModal({ project, isOpen, onClose, onSuccess }: Pr
               </div>
               <div className="col-md-6 mb-3">
                 <label className="form-label fw-bold">Live URL <span className="text-muted fw-normal">(Optional)</span></label>
-                <input type="url" name="url" className="form-control" defaultValue={project?.url || ""} />
+                <input type="url" name="url" className="form-control" defaultValue={project?.url || ""} placeholder="https:// or Play Store link" />
               </div>
             </div>
-            
+
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label fw-bold">Category</label>
+                <select name="category" className="form-control" defaultValue={project?.category || "web"}>
+                  <option value="web">Web Project</option>
+                  <option value="mobile">Mobile App (Play Store)</option>
+                </select>
+              </div>
+            </div>
+
             <div className="mb-3">
               <label className="form-label fw-bold">Description <span className="text-muted fw-normal">(Optional)</span></label>
               <textarea name="description" className="form-control" rows={4} defaultValue={project?.description || ""}></textarea>
