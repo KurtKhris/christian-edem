@@ -11,7 +11,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import CodeIcon from '@mui/icons-material/Code';
 import pic from "../assets/img/self2.png";
-import me from "../assets/img/me.jpg";
+import me from "../assets/img/me-optimized.webp";
 import shaking from "../assets/img/shaking.jpg";
 import { Footer } from "../components/footer";
 import { toast } from "react-hot-toast";
@@ -419,7 +419,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                 <div className="chip-icon"><EmailIcon fontSize="small" /></div>
                 <div><span className="chip-label">Email</span><span className="chip-value">christiankpegah@gmail.com</span></div>
               </a>
-              <img src={shaking.src} alt="" loading="lazy" decoding="async" style={{ width: '100%', borderRadius: 16, marginTop: '1.5rem', opacity: .8, border: '1px solid var(--glass-border)' }} />
+              <img src={shaking.src} width={shaking.width} height={shaking.height} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', borderRadius: 16, marginTop: '1.5rem', opacity: .8, border: '1px solid var(--glass-border)' }} />
               <div className="contact-socials">
                 <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" className="soc-link" aria-label="LinkedIn"><LinkedInIcon fontSize="small" /></a>
                 <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" className="soc-link" aria-label="GitHub"><GitHubIcon fontSize="small" /></a>

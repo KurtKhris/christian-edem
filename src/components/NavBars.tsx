@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import logo from "../assets/img/Logo.png";
+import logo from "../assets/img/Logo-optimized.png";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
