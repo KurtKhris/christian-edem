@@ -204,7 +204,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
 
               <div className="row mt-4 g-4">
                 <div className="col-md-6">
-                  <h5 className="section-label" style={{ marginBottom: '1rem' }}>Academic Qualification</h5>
+                  <h3 className="section-label" style={{ marginBottom: '1rem' }}>Academic Qualification</h3>
                   <div className="timeline">
                     {initialEducation.length > 0 ? initialEducation.map((e: any) => (
                       <div key={e.id} className="tl-item">
@@ -221,7 +221,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <h5 className="section-label" style={{ marginBottom: '1rem' }}>Work Experience</h5>
+                  <h3 className="section-label" style={{ marginBottom: '1rem' }}>Work Experience</h3>
                   <div className="timeline">
                     {initialWork.map((w: any) => (
                       <div key={w.id} className="tl-item">

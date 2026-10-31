@@ -13,7 +13,7 @@ export default async function Page() {
   ]);
 
   return (
-    <div className="container-fluid">
+    <main className="container-fluid">
       <Home
         initialProjects={dbProjects.filter((p: any) => p.isVisible)}
         initialSkills={dbSkills.filter((s: any) => s.isVisible)}
@@ -21,6 +21,6 @@ export default async function Page() {
         initialWork={dbWork.filter((w: any) => w.isVisible)}
         testimonials={testimonials}
       />
-    </div>
+    </main>
   );
 }
