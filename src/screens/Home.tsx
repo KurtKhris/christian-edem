@@ -16,7 +16,6 @@ import shaking from "../assets/img/shaking.jpg";
 import { Footer } from "../components/footer";
 import { toast } from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
-import { FloatingWhatsApp } from 'react-floating-whatsapp';
 import NavBars from "../components/NavBars";
 import { getProjectPreviewImage } from "../lib/screenshot";
 import TechCard from "../components/TechCard";
@@ -453,13 +452,16 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
         </div>
       </section>
 
-      <FloatingWhatsApp
-        phoneNumber="+233247154259"
-        accountName="Christian"
-        avatar={pic.src}
-        statusMessage="Available 24/7"
-        allowEsc allowClickAway notification notificationSound darkMode
-      />
+      <a
+        className="whatsapp-float-link"
+        href="https://wa.me/233247154259"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Christian on WhatsApp"
+        title="Chat with Christian on WhatsApp"
+      >
+        <WhatsAppIcon aria-hidden="true" />
+      </a>
       <button
         className={`scroll-top-btn ${showScrollBtn ? 'show' : ''}`}
         onClick={scrollToTop}
