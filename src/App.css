@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
 :root {
   --bg-primary: #050816;
   --bg-secondary: #080d25;
@@ -104,7 +102,7 @@ p, span, a, li, td, th, label, div { color: inherit; }
   pointer-events: none;
   z-index: 0;
   filter: blur(60px);
-  animation: blob-float 12s ease-in-out infinite;
+  animation: none;
 }
 .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(255,95,109,0.13) 0%, transparent 70%); top: -160px; left: -180px; animation-delay: 0s; }
 .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%); bottom: 0; right: -100px; animation-delay: -4s; }

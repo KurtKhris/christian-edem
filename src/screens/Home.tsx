@@ -192,7 +192,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
           <div className="row align-items-stretch g-5">
             <div className="col-lg-5 animate-on-scroll" style={{ display: 'flex' }}>
               <div className="about-photo-wrap" style={{ flex: 1 }}>
-                <img src={me.src} alt="Christian" />
+                <img src={me.src} alt="Christian" loading="lazy" decoding="async" />
               </div>
             </div>
             <div className="col-lg-7 animate-on-scroll" style={{ transitionDelay: '0.15s' }}>
@@ -279,7 +279,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                 <div className="col-sm-6 col-lg-4" key={project.id}>
                   <div className="port-card">
                     <div className="port-img-wrap">
-                      <img src={getProjectPreviewImage(project)} alt={project.name} className="port-img" />
+                      <img src={getProjectPreviewImage(project)} alt={project.name} className="port-img" loading="lazy" decoding="async" />
                       <div className="port-img-overlay">
                         {project.url && (
                           <a href={project.url} target="_blank" rel="noreferrer" className="port-overlay-btn" title="Visit Site">
@@ -351,7 +351,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                   <div className="col-sm-6 col-lg-4" key={project.id}>
                     <div className="port-card">
                       <div className="port-img-wrap">
-                        <img src={getProjectPreviewImage(project)} alt={project.name} className="port-img" />
+                        <img src={getProjectPreviewImage(project)} alt={project.name} className="port-img" loading="lazy" decoding="async" />
                         <div className="port-img-overlay">
                           {project.url && (
                             <a href={project.url} target="_blank" rel="noreferrer" className="port-overlay-btn" title="View on Play Store">
@@ -420,7 +420,7 @@ export const Home = ({ initialProjects = [], initialSkills = [], initialEducatio
                 <div className="chip-icon"><EmailIcon fontSize="small" /></div>
                 <div><span className="chip-label">Email</span><span className="chip-value">christiankpegah@gmail.com</span></div>
               </a>
-              <img src={shaking.src} alt="" style={{ width: '100%', borderRadius: 16, marginTop: '1.5rem', opacity: .8, border: '1px solid var(--glass-border)' }} />
+              <img src={shaking.src} alt="" loading="lazy" decoding="async" style={{ width: '100%', borderRadius: 16, marginTop: '1.5rem', opacity: .8, border: '1px solid var(--glass-border)' }} />
               <div className="contact-socials">
                 <a href="https://www.linkedin.com/in/christian-kpegah-491461165/" target="_blank" rel="noreferrer" className="soc-link" aria-label="LinkedIn"><LinkedInIcon fontSize="small" /></a>
                 <a href="https://github.com/KurtKhris" target="_blank" rel="noreferrer" className="soc-link" aria-label="GitHub"><GitHubIcon fontSize="small" /></a>

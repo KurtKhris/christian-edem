@@ -38,7 +38,7 @@ function NavBars() {
     <>
       <nav className={`portfolio-nav ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-inner">
-          <a href="/"><img src={logo.src} className="nav-logo" alt="Christian Kpegah" /></a>
+          <a href="/"><img src={logo.src} width={logo.width} height={logo.height} fetchPriority="high" className="nav-logo" alt="Christian Kpegah" /></a>
           <ul className="nav-links">
             <li><a href="/#about" className={isActive('about')}>About</a></li>
             <li><a href="/#skills" className={isActive('skills')}>Skills</a></li>
