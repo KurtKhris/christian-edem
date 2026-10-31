@@ -186,7 +186,8 @@ p, span, a, li, td, th, label, div { color: inherit; }
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
 }
 .hero-section > .section-wrap { position: relative; z-index: 1; }
-.hero-content { animation:fadeInLeft .8s ease-out both; }
+/* Keep the hero text visible immediately so its paint can contribute to LCP. */
+.hero-content { animation:none; }
 .hero-greeting {
   font-size:.82rem; letter-spacing:4px; text-transform:uppercase;
   color:var(--accent-from); font-weight:600; display:inline-block; margin-bottom:1rem;
